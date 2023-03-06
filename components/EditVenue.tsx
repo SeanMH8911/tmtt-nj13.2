@@ -11,7 +11,6 @@ type Props =
 
 const  EditVenue =  ({venue}: Props) => {
     const router = useRouter()
-    console.log(venue);
     const [venueDetail, setVenueDetail] = useState(venue)
     const [images, setImages] = useState<string[]>([])
     const [urls, setUrls] = useState<string[]>([]);
@@ -112,13 +111,13 @@ const  EditVenue =  ({venue}: Props) => {
               <input
                   onChange={e => {setVenueDetail({
                     ...venueDetail,
-                    Area: e.target.value
+                    area: e.target.value
                   })}}
                   autoFocus
                   placeholder="Area"
                   type="text"
                   className="input-container mt-2"
-                  value={venueDetail.Area}
+                  value={venueDetail.area}
                   required={true}
               />
               <input
@@ -136,13 +135,13 @@ const  EditVenue =  ({venue}: Props) => {
               <input
                   onChange={e => {setVenueDetail({
                     ...venueDetail,
-                    Country: e.target.value
+                    country: e.target.value
                   })}}
                   autoFocus
                   placeholder="Country"
                   type="text"
                   className="input-container mt-2 "
-                  value={venueDetail.Country}
+                  value={venueDetail.country}
                   required={true}
               />
                 </div>

@@ -22,7 +22,6 @@ type Props =
 }
 
 function ShowMapHome({venues}:Props ) {
-    console.log(venues);
     
  const mapContainerStyle = {
   height: '400px',

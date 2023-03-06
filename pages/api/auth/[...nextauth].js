@@ -15,7 +15,12 @@ export const authOptions = {
   //   // signIn: "/auth/signin",
   //   signOut: "/",
   // },
-  secret: process.env.NEXTAUTH_SECRET,
+  // theme: {
+  //   colorScheme: "auto", // "auto" | "dark" | "light"
+  //   brandColor: "", // Hex color code #33FF5D
+  //   logo: "/logo.png", // Absolute URL to image
+  // },
+  secret: process.env.JWT_SECRET,
   callbacks: {
     async session({ session, token, user }) {
       // console.log(

@@ -7,7 +7,6 @@ type Props ={
 }
 
 function SearchBox({venues}: Props) {
-    console.log(venues);
     
   return (
     <div>

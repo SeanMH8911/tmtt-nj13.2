@@ -8,13 +8,14 @@ import { Suspense } from 'react';
 
 
 
-export const revalidate = 3600; // revalidate every hour
+export const revalidate = 100; // revalidate every hour
 // 
-export default async function Home({}: Props) {
+export default async function Home() {
 //  const venues = await prisma.venue.findMany()
-const data = await fetch(`${process.env.NEXTAUTH_URL}/venues`, {method: 'GET'});
+const data = await fetch(`${process.env.NEXTAUTH_URL}/venues`);
 const items = await data.json()
 const venues = items.result
+
   return (
    <main>
         <SearchBox venues={venues}/>
@@ -27,7 +28,9 @@ const venues = items.result
         {/* markers not showing up in component below */}
         {/* <ShowMapHome venues={venues}/> */}
       </div>
-      <h1></h1>
+      <section>
+        <h1>Artists</h1>
+      </section>
    </main>
   )
 }

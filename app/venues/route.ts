@@ -43,8 +43,8 @@ export async function POST(
             fullAddress: body.fullAddress,
             streetName: body.road,
             locality: body.locality,
-            Area: body.area,
-            Country: body.country,
+            area: body.area,
+            country: body.country,
             venueCategory: body.category,
         }
     })
@@ -60,42 +60,3 @@ export async function POST(
 
             
 
-// export async function PUT(
-//     request: Request,
-//     {params} : Params
-// ) {
-//     const slug = params.slug
-    
-//     const session = await getServerSession( authOptions)
-//     if(!session) return NextResponse.json({message: "Sign in to update your venues"})
-    
-//    try {
-//     const body = await request.json()
-//     console.log(body);
-    
-//     const result = await prisma.venue.update({
-//         where:{
-//             id: slug
-//         },
-//         data: {
-//             title: body.title,
-//             images: body.images,
-//             lat: body.lat,
-//             lng: body.lng,
-//             postalCode: body.postalCode,
-//             fullAddress: body.fullAddress,
-//             streetName: body.road,
-//             locality: body.locality,
-//             Area: body.area,
-//             Country: body.country,
-//             venueCategory: body.category,
-//         }
-//     })
-//     console.log(result);
-    
-//             return NextResponse.json({result})
-//         } catch(error){
-//         console.log(error);
-//             return NextResponse.json({error: error})
-//     }    
-// }

@@ -13,6 +13,11 @@ return (
             <h1>Test</h1>
         </Link>
         <div className='flex items-center'>
+            <Link
+            className='mr-2'
+                href={"/dashboard/profile"}>
+                    <button>Entertainer</button>
+            </Link>
             {session?.user.role === 'Admin' &&  
             <Link
             className='mr-2'

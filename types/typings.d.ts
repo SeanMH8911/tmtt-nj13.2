@@ -16,8 +16,8 @@ export interface Venue  {
     fullAddress: string;
     streetName: string;
     locality: string;
-    Area: string;
-    Country: string;
+    area: string;
+    country: string;
     postalCode: string;
     lat: Float;
     lng: Float;
@@ -30,6 +30,22 @@ export type User = {
     email: string;
     emailVerified: DateTime;
     image: string;
+    role: string;
+    artist: Artist
+}
+export type Artist = {
+    id: string;     
+    stageName: string;
+    address: string;
+    contactNumber: int;
+    facebookLink: string;
+    instagramLink: string;
+    twitterLink:  string;
+    websiteLink: string;
+    avaiableForHire: string;
+    openingTimes:  OpeningTime[]
+    user: User      
+    userId: string   
 }
 
 export declare type Libraries = ("drawing" | "geometry" | "localContext" | "places" | "visualization")[];

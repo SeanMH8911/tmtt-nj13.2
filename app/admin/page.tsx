@@ -10,8 +10,6 @@ import { loadStaticPaths } from "next/dist/server/dev/static-paths-worker"
 
 async function Admin() {
 const session = await getServerSession(authOptions)
-console.log(session);
-
 if(!session) redirect('/')
 if (session?.user?.role === "Admin"){
   return (

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useS3Upload } from "next-s3-upload";
 import { Coordinates } from '@/types/typings';
 import { redirect } from 'next/navigation';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import SearchForm from '../components/SearchForm';
 
 
@@ -91,9 +91,6 @@ const Venue = () => {
       <div className="flex flex-col my-2">
 
         <div>
-          {/* <PlacesAutocomplete 
-        {...addressProps}
-        /> */}
       <SearchForm {...addressProps}/>
         
         </div>

@@ -1,5 +1,5 @@
 import '../styles/global.css'
-import Nav from '../app/auth/Nav'
+import Nav from './auth/Nav'
 export default function RootLayout({
   children,
 }: {

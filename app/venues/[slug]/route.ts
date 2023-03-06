@@ -4,24 +4,6 @@ import { getServerSession } from "next-auth";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { NextResponse } from "next/server";
 
-// export async function GET(
-//   request: Request,
-//   {params} : Params
-//   ) {
-//     const slug = params.slug
-//          try{
-//             const result = await prisma.venue.findUnique({
-//                 where: {
-//                     id : slug
-//                 }
-//             })
-//         return  NextResponse.json({result}, {status: 200})
-//     } catch(err){
-//         console.log(err);
-//         return  NextResponse.json({err: err})
-//     }
-// }
-
 
 
 export async function PATCH(
@@ -50,8 +32,8 @@ export async function PATCH(
             fullAddress: body.fullAddress,
             streetName: body.road,
             locality: body.locality,
-            Area: body.area,
-            Country: body.country,
+            area: body.area,
+            country: body.country,
             venueCategory: body.category,
         }
     })
