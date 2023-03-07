@@ -4,7 +4,7 @@ export type Coordinates  ={
 }
 
 
-export interface Venue  {
+export type Venue = {
     id: string;   
     createdAt: DateTime;
     updatedAt: DateTime;

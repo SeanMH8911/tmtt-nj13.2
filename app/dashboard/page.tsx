@@ -25,7 +25,7 @@ async function userListings(){
 }
  async function dashboard() {
   const listings = await userListings()
-  const venues = listings.Venue
+  const venues = listings.venue
   return (
     <div className="">
       <h1 className="mx-2 p-2 text-2xl">My Listings</h1>

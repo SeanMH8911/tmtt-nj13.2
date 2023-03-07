@@ -2,34 +2,41 @@ import SearchBox from '@/components/SearchBox';
 import SearchForm from '@/components/SearchForm';
 import ShowMapHome from '@/components/ShowMapHome';
 import Venues from '@/components/Venues';
+import GetAllVenues from '@/lib/getAllVenues';
+import GetAllArtists from '@/lib/getAllArtists';
 import prisma from '@/prisma/client';
 import { Venue } from '@/types/typings';
 import { Suspense } from 'react';
+import ShowArtists from '@/components/ShowArtists';
+
+export const revalidate = 100;
+
+// async function getData(){
+//   const venues = await prisma.venue.findMany()
+//   return venues
+// }
 
 
-
-export const revalidate = 100; // revalidate every hour
-// 
 export default async function Home() {
-//  const venues = await prisma.venue.findMany()
-const data = await fetch(`${process.env.NEXTAUTH_URL}/venues`);
-const items = await data.json()
-const venues = items.result
+const venues = await GetAllVenues()
+const artists = await GetAllArtists()
+console.log(artists);
 
   return (
    <main>
-        <SearchBox venues={venues}/>
+        <SearchBox/>
       <section className='p-5'>
         <Suspense fallback={<p>Loading feed...</p>}>
           {venues && <Venues venues={venues} />}
         </Suspense>
       </section>
       <div>
-        {/* markers not showing up in component below */}
         {/* <ShowMapHome venues={venues}/> */}
       </div>
-      <section>
-        <h1>Artists</h1>
+      <section className='p-5'>
+        <Suspense fallback={<p>Loading feed...</p>}>
+        {artists && <ShowArtists artists={artists}/>}
+        </Suspense>
       </section>
    </main>
   )

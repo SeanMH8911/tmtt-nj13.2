@@ -2,11 +2,11 @@
 
 import { Venue } from "@/types/typings"
 
-type Props ={
-    venues :Venue
-}
+// type Props ={
+//     venues :Venue
+// }
 
-function SearchBox({venues}: Props) {
+function SearchBox() {
     
   return (
     <div>

@@ -19,7 +19,7 @@ model Venue {
   published     Boolean       @default(false)
   userId        String
   images        String[]
-  website       String
+  website       String?
   user          User          @relation(fields: [userId], references: [id])
   fullAddress   String
   streetName    String?
@@ -30,7 +30,8 @@ model Venue {
   lat           Float?
   lng           Float?
   venueCategory String?
-  openingTimes  OpeningTime[]
+  // openingTimes  OpeningTime[]
+  OpeningTime   OpeningTime[]
 }
 
 model OpeningTime {

@@ -8,6 +8,7 @@ import SearchForm from '../components/SearchForm';
 
 
 const Venue = () => {
+  const router = useRouter()
     const [manualEntry, setManualEntry] = useState(false)
     const [fullAddress, setFullAddress] = useState<string>("")
     const [propertyNumber, setPropertyNumber] = useState("")
@@ -84,6 +85,7 @@ const Venue = () => {
       } catch (error) {
         console.error(error)
     }
+    router.push('/dashboard')
   }
 
         

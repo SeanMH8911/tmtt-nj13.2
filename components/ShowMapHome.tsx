@@ -16,10 +16,10 @@ import {
 
 
 
-type Props = 
-{
-    venues: Venue
-}
+// type Props = 
+// {
+//     venues: Venue[]
+// }
 
 function ShowMapHome({venues}:Props ) {
     
@@ -47,13 +47,13 @@ const options = {
         libraries={["places"]} 
         >
             <GoogleMap id='marker-example' mapContainerStyle={mapContainerStyle} zoom={13} center={center}>
-                    <MarkerClustererF options={options}>
+                    <MarkerClusterer options={options}>
                 {(clusterer) =>
-                    venues.map((venue: Venue) => (
+                    venues.map((venue: any) => (
                     <Marker key={venue.id}  clusterer={clusterer} position={{lat: venue.lat, lng: venue.lng}} />
                     ))
                 }
-                </MarkerClustererF>
+                </MarkerClusterer>
             </GoogleMap>
         </LoadScript>
                 )}

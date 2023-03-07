@@ -1,7 +1,8 @@
+import { Venue } from '@/types/typings'
 import Image from 'next/image'
 import Link from 'next/link'
 type Props ={
-    venues :any
+    venues : Venue[]
 }
 function Venues({venues}: Props) {
   return (

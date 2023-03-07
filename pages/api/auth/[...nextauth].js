@@ -16,9 +16,9 @@ export const authOptions = {
   //   signOut: "/",
   // },
   // theme: {
-  //   colorScheme: "auto", // "auto" | "dark" | "light"
-  //   brandColor: "", // Hex color code #33FF5D
-  //   logo: "/logo.png", // Absolute URL to image
+  //   colorScheme: "dark", // "auto" | "dark" | "light"
+  //   brandColor: "#F26419", // Hex color code #33FF5D
+  //   // logo: "/logo.png", // Absolute URL to image
   // },
   secret: process.env.JWT_SECRET,
   callbacks: {

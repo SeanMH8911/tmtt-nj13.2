@@ -3,25 +3,8 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-  const result = await prisma.user.create({
-  data: {
-    email: 'seanhoweworasask@gmail.com',
-    role: "Artist",
-    Artist: {
-      create: {
-        stageName: "Bobby",
-        address: "40 Sunset Bay, Adeje, Tenerife, 34343",
-        contactNumber: "07940968593",
-        facebookLink: "https://www.facebook.com",
-        instagramLink: "https://www.instagram.com",
-        twitterLink: "https://twitter.com",
-        websiteLink: "https://www.test.com",
-        avaiableForHire: true,
-
-      }
-    },
+  const result = await prisma.venue.findMany()
     
-  }
     // OR: {
     //   title:{
     //     contains: 'ginger',
@@ -34,9 +17,6 @@ async function main() {
     //     }
     //   },
     // }
- 
-  })
-
  console.log(result);
  
 }

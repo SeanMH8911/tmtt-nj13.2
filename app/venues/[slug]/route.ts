@@ -4,8 +4,6 @@ import { getServerSession } from "next-auth";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { NextResponse } from "next/server";
 
-
-
 export async function PATCH(
     request: Request,
     {params} : Params

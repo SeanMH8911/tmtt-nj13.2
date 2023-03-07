@@ -8,9 +8,7 @@ type Props = {
         slug: string
     }
 }
-
-async function VenueDetail({params}: Props) {
-    const session = await getServerSession(authOptions)
+async function getData({params}: Props){
     
     const slug = params.slug
     const data = await prisma.venue.findUnique({
@@ -18,13 +16,17 @@ async function VenueDetail({params}: Props) {
                 id: slug
             }
         })
-    const address = data.fullAddress
+    return data
+}
 
-        
 
-
+async function VenueDetail({params}: Props) {
+    const session = await getServerSession(authOptions)
+    const data = await getData({params})
   return (
-    <div className="flex flex-col lg:flex-row justify-between ">
+    <>
+            {data && (
+                <div className="flex flex-col lg:flex-row justify-between ">
         <div className="p-2.5 lg:p-10 lg:w-1/2">
             <div className="flex justify-between"> 
                 <h1 className="font-bold">{data.title}</h1>
@@ -33,7 +35,7 @@ async function VenueDetail({params}: Props) {
                 }
             </div>
             <div className=" ">
-                {data.zipCode}{address}
+                {data.zipCode}{data.fullAddress}
                 <img 
                 src={data.images[0]}
                 alt={data.title}
@@ -56,6 +58,8 @@ async function VenueDetail({params}: Props) {
             </div>
         </div>
     </div>
+            )}
+    </>
   )
 }
 

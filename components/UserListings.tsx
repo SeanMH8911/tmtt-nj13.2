@@ -1,6 +1,11 @@
+import { Venue } from "@/types/typings";
 import Link from "next/link";
 
-async function UserListings({venue}: any) {
+type Props = {
+  venue: Venue
+}
+async function UserListings({venue}: Props) {
+  console.log(venue);
   
   return (
           <Link key={venue.id} href={`/venue/${venue.id}`}>

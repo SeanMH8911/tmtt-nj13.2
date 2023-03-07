@@ -1,7 +1,6 @@
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import prisma from '@/prisma/client'
 import { getServerSession } from 'next-auth/next'
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher'
 import { NextRequest, NextResponse } from 'next/server'
 
 
@@ -9,6 +8,7 @@ export async function GET(
   request: Request
   ) {
          try{
+    
             const result = await prisma.venue.findMany()
         return  NextResponse.json(result, {status: 200})
     } catch(err){
@@ -56,7 +56,3 @@ export async function POST(
             return NextResponse.json({error: error})
     }    
 }
-            
-
-            
-

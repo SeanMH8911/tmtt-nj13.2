@@ -1,5 +1,11 @@
 import '../styles/global.css'
 import Nav from './auth/Nav'
+
+export const metadata ={
+  title: "TMTT",
+  description: ""
+}
+
 export default function RootLayout({
   children,
 }: {

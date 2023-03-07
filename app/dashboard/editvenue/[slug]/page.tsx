@@ -16,7 +16,7 @@ async function editVenuePage({params}: Props) {
             }
         })
         return (
-            <div>
+            <div className="max-w-2xl mx-auto">
                 <EditVenue venue={data} />
             </div>
         )
