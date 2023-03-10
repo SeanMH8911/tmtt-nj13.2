@@ -28,7 +28,8 @@ type Props = {
     setCountry: (value: boolean | ((prevVar: boolean) => boolean)) => void;
 }
 
-const libraries: LoadScriptProps["libraries"] = ["places"]
+const libraries = ["places"];
+
 export default function SearchForm({  
     road, 
     setRoad,
@@ -49,6 +50,7 @@ export default function SearchForm({
     title,
     setTitle
 }: any) {
+  const apiKey = process.env.GOOGLE_MAPS_API_KEY
     const [searchBox, setSearchBox] = useState(null);
     const onPlacesChanged = () => {
     const data = searchBox.getPlaces()
@@ -93,7 +95,8 @@ export default function SearchForm({
     <>
        <LoadScript
         googleMapsApiKey="AIzaSyBtx6X2LcZwZ-H-eZlskR_G4wXuMAZCnLE"
-        libraries={["places"]} 
+        
+        libraries={libraries} 
         >
         <StandaloneSearchBox
         onLoad={onSBLoad}

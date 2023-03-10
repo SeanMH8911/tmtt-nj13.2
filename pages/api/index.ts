@@ -1,9 +1,16 @@
 import { PrismaClient } from '@prisma/client'
-
 const prisma = new PrismaClient()
 
 async function main() {
-  const result = await prisma.venue.findMany()
+
+  const res = await prisma.openingTime.create({
+    data:{
+      venueId:"clf1l6rmh0000bzr473zgsbuw",
+      dayOfWeek: 6,
+      openTime: new Date(0,0,0,9,0,0),
+      closeTime: new Date(0,0,0,23,0,0)
+    }
+  })
     
     // OR: {
     //   title:{
@@ -17,7 +24,7 @@ async function main() {
     //     }
     //   },
     // }
- console.log(result);
+ console.log(res);
  
 }
 

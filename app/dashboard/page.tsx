@@ -1,4 +1,4 @@
-import UserListings from "../../components/UserListings"
+import UserListings from "../../components/user/UserListings"
 import { redirect } from "next/navigation"
 import { getServerSession } from 'next-auth/next'
 import prisma from "@/prisma/client"

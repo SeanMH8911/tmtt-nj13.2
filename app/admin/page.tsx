@@ -2,7 +2,7 @@
 import { redirect } from "next/navigation"
 import { getServerSession } from 'next-auth/next'
 import prisma from "@/prisma/client"
-import CreateVenue from '../../components/CreateVenue'
+import CreateVenue from '../../components/venue/CreateVenue'
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { loadStaticPaths } from "next/dist/server/dev/static-paths-worker"
 

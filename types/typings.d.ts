@@ -22,8 +22,20 @@ export type Venue = {
     lat: Float;
     lng: Float;
     venueCategory: string;
+    openingTime: []
 }
+export type OpeningTime = {
+    id: string;
+    dayOfWeek: int;
+    openTime: string;
+    closeTime: string;
+    midOpenTime: string | null;
+    midCloseTime: string | null;
+    venueId: string;
+    BookableSlots: [],
+    artistId: string | null;
 
+}
 export type User = {
     id: string;
     name: string;
@@ -47,5 +59,24 @@ export type Artist = {
     user: User      
     userId: string   
 }
+
+interface Day {
+  day: number;
+  isOpen: boolean;
+    timePeriods: {
+    openTime: string;
+    closingTime: string;
+  }[];
+}[];
+
+type Time = {
+  day: number;
+  timePeriods:
+    {
+        openTime: string;
+        closingTime: string;
+    }[]
+  
+};
 
 export declare type Libraries = ("drawing" | "geometry" | "localContext" | "places" | "visualization")[];

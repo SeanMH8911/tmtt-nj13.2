@@ -21,6 +21,7 @@ const onLoad = marker => {
 
 
 function ShowMap({lat,lng}: Coordinates) {
+  const apiKey = process.env.GOOGLE_MAPS_API_KEY
     const position = {
         lat: lat,
         lng: lng

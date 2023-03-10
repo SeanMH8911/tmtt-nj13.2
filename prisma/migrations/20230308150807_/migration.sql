@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "OpeningTime" ALTER COLUMN "openTime" SET DATA TYPE TIME(4),
+ALTER COLUMN "closeTime" SET DATA TYPE TIME(4);

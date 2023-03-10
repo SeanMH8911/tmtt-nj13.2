@@ -1,5 +1,6 @@
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import prisma from '@/prisma/client'
+import { OpeningTime, Time } from '@/types/typings'
 import { getServerSession } from 'next-auth/next'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -32,6 +33,18 @@ export async function POST(
         }
     })
     const body = await request.json()
+    console.log(body);
+    
+    const openingTimeData = {
+    create: body.openHours.map((time:Time ) => ({
+        dayOfWeek: time.day,
+        openTime: time.timePeriods[0].openTime ? new Date(`2000-01-01T${time.timePeriods[0].openTime}:00Z`) : null,
+        closeTime: time.timePeriods[0].closingTime ? new Date(`2000-01-01T${time.timePeriods[0].closingTime}:00Z`) : null,
+        midOpenTime: time.timePeriods[1].openTime ? new Date(`2000-01-01T${time.timePeriods[1].openTime}:00Z`) : null,
+        midCloseTime: time.timePeriods[1].closingTime ? new Date(`2000-01-01T${time.timePeriods[1].closingTime}:00Z`) : null,
+    })),
+    };
+
     const result = await prisma.venue.create({
         data: {
             title: body.title,
@@ -46,9 +59,9 @@ export async function POST(
             area: body.area,
             country: body.country,
             venueCategory: body.category,
-        }
+            openingTime: openingTimeData,
+        },
     })
-    console.log(result);
     
             return NextResponse.json({result})
         } catch(error){

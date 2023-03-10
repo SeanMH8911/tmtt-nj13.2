@@ -1,4 +1,4 @@
-import EditVenue from "@/components/EditVenue"
+import EditVenue from "@/components/venue/EditVenue"
 import prisma from "@/prisma/client"
 
 type Props = {

@@ -1,7 +1,9 @@
-import ShowMap from "@/components/ShowMapDetailed"
+import ShowMap from "@/components/venue/ShowMapDetailed"
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import prisma from "@/prisma/client"
+import { OpeningTime } from "@/types/typings"
 import { getServerSession } from "next-auth"
+import dayjs from 'dayjs';
 import Link from "next/link"
 type Props = {
     params: {
@@ -14,6 +16,9 @@ async function getData({params}: Props){
     const data = await prisma.venue.findUnique({
             where: {
                 id: slug
+            },
+            include: {
+                openingTime: true
             }
         })
     return data
@@ -22,7 +27,24 @@ async function getData({params}: Props){
 
 async function VenueDetail({params}: Props) {
     const session = await getServerSession(authOptions)
-    const data = await getData({params})
+    const data = await getData({params})    
+    
+    
+    function showDayOfWeek(i: any) {
+    if (i === 0) return "Sunday"
+    if (i === 1) return "Monday"
+    if (i === 2) return "Tuesday"
+    if (i === 3) return "Wednesday"
+    if (i === 4) return "Thursday"
+    if (i === 5) return "Friday"
+    if (i === 6) return "Saturday"
+}
+function timeFormat(i: any) {
+    const timeString = new Date(`${i}`).toLocaleTimeString('en-US', { hour12: true, hour: 'numeric', minute: 'numeric' });
+    return timeString
+}
+ 
+
   return (
     <>
             {data && (
@@ -40,15 +62,17 @@ async function VenueDetail({params}: Props) {
                 src={data.images[0]}
                 alt={data.title}
                 />
-                {/* <SimpleMap lng={data.lng} lat={data.lat} /> */}
             </div>
-            <div>
-                <h3>Opening Times</h3>
-                {/* <ul>
-                    {openingTimes && openingTimes.map((times) => (
-                        <li></li>
+            <div  className="bg-myBlue rounded-lg p-2 my-2 max-w-[300px] text-myCharcoal font-bold">
+                <h3 className="py-1 text-2xl">Opening Times</h3>
+                <hr />
+                <ul className="space-y-1">
+                    {data.openingTime && data.openingTime.map((times:OpeningTime) => (
+                        <div className="flex justify-between">
+                            <p key={times.id}>{showDayOfWeek(times.dayOfWeek)}:</p> <p>{timeFormat(times.openTime)} - {timeFormat(times.closeTime)} </p>
+                        </div>
                     ))}
-                </ul> */}
+                </ul>
             </div>
         </div>
         <div className="p-2.5 lg:p-10 justify-start lg:w-1/2">

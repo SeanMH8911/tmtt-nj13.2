@@ -30,17 +30,16 @@ model Venue {
   lat           Float?
   lng           Float?
   venueCategory String?
-  // openingTimes  OpeningTime[]
-  OpeningTime   OpeningTime[]
+  openingTime   OpeningTime[]
 }
 
 model OpeningTime {
   id            String     @id @default(cuid())
   dayOfWeek     Int // 0 for Sunday, 1 for Monday, etc.
-  openTime      DateTime
-  closeTime     DateTime
-  midOpenTime   DateTime? // nullable in case there is no mid-break
-  midCloseTime  DateTime? // nullable in case there is no mid-break
+  openTime      DateTime?  @db.Time(0) // nullable in case there venue is closed
+  closeTime     DateTime?  @db.Time(0) // nullable in case there venue is closed
+  midOpenTime   DateTime?  @db.Time(0) // nullable in case there is no mid-break
+  midCloseTime  DateTime?  @db.Time(0) // nullable in case there is no mid-break
   venue         Venue      @relation(fields: [venueId], references: [id])
   venueId       String
   BookableSlots DateTime[]

@@ -1,6 +1,6 @@
 'use client'
 
-import CreateArtistProfile from "@/components/CreateArtistProfile"
+import CreateArtistProfile from "@/components/artist/CreateArtistProfile"
 
 
 function page() {

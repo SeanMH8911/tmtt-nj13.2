@@ -1,4 +1,4 @@
-import EditArtistProfile from '@/components/EditArtistProfile'
+import EditArtistProfile from '@/components/artist/EditArtistProfile'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import prisma from '@/prisma/client'
 import { getServerSession } from 'next-auth'

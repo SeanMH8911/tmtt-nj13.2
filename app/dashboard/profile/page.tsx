@@ -1,4 +1,4 @@
-import UserListingProfile from "@/components/UserListingProfile"
+import UserListingProfile from "@/components/user/UserListingProfile"
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import prisma from "@/prisma/client"
 import { getServerSession } from "next-auth"
