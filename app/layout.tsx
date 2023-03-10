@@ -1,15 +1,15 @@
-import '../styles/global.css'
-import Nav from './auth/Nav'
+import "../styles/global.css";
+import Nav from "./auth/Nav";
 
-export const metadata ={
+export const metadata = {
   title: "TMTT",
-  description: ""
-}
+  description: "",
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -22,7 +22,7 @@ export default function RootLayout({
         {/* @ts-expect-error Server Component  */}
         <Nav />
         {children}
-        </body>
+      </body>
     </html>
-  )
+  );
 }
