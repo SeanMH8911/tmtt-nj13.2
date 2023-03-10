@@ -5,6 +5,8 @@ import { OpeningTime } from "@/types/typings"
 import { getServerSession } from "next-auth"
 import dayjs from 'dayjs';
 import Link from "next/link"
+import { LoadScriptNext } from "@react-google-maps/api"
+
 type Props = {
     params: {
         slug: string

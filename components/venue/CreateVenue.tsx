@@ -6,7 +6,9 @@ import { redirect } from 'next/navigation';
 import { useRouter } from 'next/navigation'
 import SearchForm from './SearchForm';
 import OperatingTimes from '../OperatingTimes';
+import { LoadScript, LoadScriptNext } from '@react-google-maps/api';
 
+const libraries = ["places"];
 
 const Venue = () => {
   const router = useRouter()
@@ -108,7 +110,12 @@ const Venue = () => {
       <div className="flex flex-col my-2">
 
         <div>
-      <SearchForm {...addressProps}/>
+          <LoadScriptNext
+        googleMapsApiKey="AIzaSyBtx6X2LcZwZ-H-eZlskR_G4wXuMAZCnLE"
+        libraries={libraries} 
+        >
+        <SearchForm {...addressProps}/>
+      </LoadScriptNext>
         </div>
               <form
               className="flex flex-col mt-5 "

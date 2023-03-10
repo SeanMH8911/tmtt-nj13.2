@@ -1,34 +1,11 @@
 'use client'
 import React, { useRef, useState } from 'react'
 import {
-  useLoadScript,
-  LoadScriptProps, 
-  Autocomplete,
   StandaloneSearchBox,
-  LoadScript,
-  GoogleMap,
 } from '@react-google-maps/api'
 
-type Props = {
-    address: string;
-    setAddress: string;
-    newAddress:string;
-    setNewAddress:string;
-    latlng:number;
-    setLatlng:string;
-    postalCode: string;
-    setPostalCode: string;
-    road: string;
-    setRoad: string;
-    locality: string ;
-    setLocality: string;
-    area: string;
-    setArea: string;
-    country: string;
-    setCountry: (value: boolean | ((prevVar: boolean) => boolean)) => void;
-}
 
-const libraries = ["places"];
+
 
 export default function SearchForm({  
     road, 
@@ -50,7 +27,6 @@ export default function SearchForm({
     title,
     setTitle
 }: any) {
-  const apiKey = process.env.GOOGLE_MAPS_API_KEY
     const [searchBox, setSearchBox] = useState(null);
     const onPlacesChanged = () => {
     const data = searchBox.getPlaces()
@@ -91,18 +67,23 @@ export default function SearchForm({
   const onSBLoad = ref => {
     setSearchBox(ref);
   };
+const bounds = {
+  north: 29.5,
+  south: 27.5,
+  east: -13.5,
+  west: -18.5,
+};
+
+
   return (
     <>
-       <LoadScript
-        googleMapsApiKey="AIzaSyBtx6X2LcZwZ-H-eZlskR_G4wXuMAZCnLE"
-        
-        libraries={libraries} 
-        >
+       
         <StandaloneSearchBox
         onLoad={onSBLoad}
         onPlacesChanged={
             onPlacesChanged
         }
+        bounds={bounds}
         >
       <input
         type="text"
@@ -110,7 +91,7 @@ export default function SearchForm({
         className='input-container'
       />
         </StandaloneSearchBox>
-    </LoadScript>
+  
     </>
   )
 }
