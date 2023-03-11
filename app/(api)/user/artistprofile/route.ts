@@ -31,6 +31,14 @@ export async function POST(request: Request) {
         twitterLink: body.twitterLink,
         websiteLink: body.websiteLink,
         avaiableForHire: body.avaiableForHire,
+        contactEmail: body.contactEmail,
+        streetName: body.road,
+        locality: body.locality,
+        area: body.area,
+        country: body.country,
+        postalCode: body.postalCode,
+        description: body.description,
+        genres: body.genres,
       },
     });
     console.log(result);

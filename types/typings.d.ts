@@ -22,6 +22,8 @@ export type Venue = {
   lng: Float;
   venueCategory: string;
   openingTime: [];
+  bookings: Booking[];
+  contactNumber: string;
 };
 export type OpeningTime = {
   id: string;
@@ -33,6 +35,9 @@ export type OpeningTime = {
   venueId: string;
   BookableSlots: [];
   artistId: string | null;
+  Artist: Artist;
+  artistId: String;
+  bookings: Booking[];
 };
 export type User = {
   id: string;
@@ -57,6 +62,26 @@ export type Artist = {
   openingTimes: OpeningTime[];
   user: User;
   userId: string;
+  streetName: string;
+  locality: string;
+  area: string;
+  country: string;
+  postalCode: string;
+  contactEmail: string;
+  bookings: Booking[];
+};
+type Booking = {
+  id: string;
+  date: dateTime;
+  start: string;
+  end: string;
+  venue: Venue;
+  venueId: string;
+  venueTitle: string;
+  artist: Artist;
+  artistId: string;
+  openingTime: OpeningTime;
+  openingTimeId: string;
 };
 
 interface Day {

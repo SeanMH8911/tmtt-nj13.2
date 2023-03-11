@@ -1,6 +1,5 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch"]
@@ -21,6 +20,7 @@ model Venue {
   images        String[]
   website       String?
   user          User          @relation(fields: [userId], references: [id])
+  contactNumber String?
   fullAddress   String
   streetName    String?
   locality      String?
@@ -31,7 +31,11 @@ model Venue {
   lng           Float?
   venueCategory String?
   openingTime   OpeningTime[]
+  bookings      Booking[]
 }
+
+
+
 
 model OpeningTime {
   id            String     @id @default(cuid())
@@ -45,6 +49,8 @@ model OpeningTime {
   BookableSlots DateTime[]
   Artist        Artist?    @relation(fields: [artistId], references: [id])
   artistId      String?
+  // bookings      Booking[] 
+
 }
 
 enum Role {
@@ -54,9 +60,25 @@ enum Role {
   Admin
 }
 
+model Booking {
+  id           String     @id @default(cuid())
+  date         DateTime
+  start        DateTime
+  end          DateTime
+  venueTitle   String
+  venue        Venue      @relation(fields: [venueId], references: [id])
+  venueId      String
+  artist       Artist?    @relation(fields: [artistId], references: [id])
+  artistId     String?
+  // openingTime  OpeningTime?  @relation(fields: [openingTimeId], references: [id])
+  // openingTimeId String
+}
+
 model Artist {
   id              String        @id @default(cuid())
   profileImg      String?
+  description     String?
+  genres          String[]
   stageName       String?
   address         String?
   contactNumber   String?
@@ -68,7 +90,13 @@ model Artist {
   openingTimes    OpeningTime[]
   user            User          @relation(fields: [userId], references: [id])
   userId          String        @unique
-  // upcomingEvents
+  streetName      String?
+  locality        String?
+  area            String?
+  country         String?
+  postalCode      String?
+  contactEmail    String?
+  bookings        Booking[]
 }
 
 model User {
