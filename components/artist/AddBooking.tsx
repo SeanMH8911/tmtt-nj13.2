@@ -1,8 +1,9 @@
 "use client";
+import { checkBooking } from "@/lib/checkBooking";
 import { Venue } from "@/types/typings";
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-
+import { useQueryClient } from "react-query";
 type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
 type Props = {
   allVenues: Venue[];
@@ -53,15 +54,31 @@ export default function AddBooking({ allVenues }: Props) {
         timeTill,
         searchTerm,
       };
-      await fetch(`/createBooking`, {
+
+      const response = await fetch(`/bookings/createBooking`, {
         method: "POST",
         body: JSON.stringify(body),
-      }).then((response) => {
-        if (response.status === 200) {
-          toast.success("booking successfully created!");
-        }
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log(result);
+      if (result.status === 409) {
+        toast.error("booking already exists!");
+      } else {
+        toast.success("booking successfully created!");
+        setSearchTerm("");
+        setDate("");
+        setTimeFrom("");
+        setTimeTill("");
+        setVenueId("");
+        setBookingForm(false);
+      }
     } catch (error) {
+      console.error(error);
       toast.error("There was a problem creating the booking, please try again");
     }
   }
@@ -141,7 +158,7 @@ export default function AddBooking({ allVenues }: Props) {
                 value="create"
                 className="text-white font-medium text-lg bg-myBlue rounded-lg px-4 m-0 h-[40px]"
               >
-                Create Event
+                Create
               </button>
             </div>
           </form>

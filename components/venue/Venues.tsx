@@ -5,8 +5,6 @@ type Props = {
   venues: Venue[];
 };
 function Venues({ venues }: Props) {
-  console.log(venues);
-
   return (
     <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
       {venues.map((venue: any) => (

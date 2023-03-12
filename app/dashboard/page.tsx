@@ -8,6 +8,7 @@ import getUser from "@/lib/getUser";
 import AddBooking from "@/components/artist/AddBooking";
 import GetAllVenues from "@/lib/getAllVenues";
 import dayjs from "dayjs";
+import DeleteBooking from "@/components/artist/DeleteBooking";
 
 async function userListings() {
   const session = await getServerSession(authOptions);
@@ -83,6 +84,9 @@ async function dashboard() {
                   </td>
                   <td className="border md:px-4 py-2">
                     {formatTime(booking.end)}
+                  </td>
+                  <td className="border md:px-4 py-2">
+                    <DeleteBooking id={booking.id} />
                   </td>
                 </tr>
               ))}

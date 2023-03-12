@@ -1,12 +1,8 @@
-import ShowMap from "@/components/venue/ShowMapDetailed";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import prisma from "@/prisma/client";
 import { OpeningTime } from "@/types/typings";
 import { getServerSession } from "next-auth";
-import dayjs from "dayjs";
 import Link from "next/link";
-import { LoadScriptNext } from "@react-google-maps/api";
-import GoogleScript from "@/components/GoogleScript";
 
 type Props = {
   params: {
