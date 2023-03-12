@@ -9,6 +9,7 @@ import AddBooking from "@/components/artist/AddBooking";
 import GetAllVenues from "@/lib/getAllVenues";
 import dayjs from "dayjs";
 import DeleteBooking from "@/components/artist/DeleteBooking";
+import { formatDate, formatTime } from "@/lib/formatters";
 
 async function userListings() {
   const session = await getServerSession(authOptions);
@@ -33,15 +34,6 @@ async function dashboard() {
   const user = await getUser();
   const allVenues = await GetAllVenues();
   const bookings = user.artist.bookings;
-
-  function formatDate(date: string | number | Date | dayjs.Dayjs) {
-    const formattedDate = dayjs(date).format("dddd, D MMMM YYYY");
-    return formattedDate;
-  }
-  function formatTime(time: string | number | Date | dayjs.Dayjs) {
-    const formattedTime = dayjs(time).format("HH:mma");
-    return formattedTime;
-  }
 
   if (user.role === "VenueOwner") {
     return (

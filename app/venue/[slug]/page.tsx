@@ -1,6 +1,7 @@
+import { formatDate, formatTime } from "@/lib/formatters";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import prisma from "@/prisma/client";
-import { OpeningTime } from "@/types/typings";
+import { Booking, OpeningTime } from "@/types/typings";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 
@@ -17,6 +18,11 @@ async function getData({ params }: Props) {
     },
     include: {
       openingTime: true,
+      bookings: {
+        include: {
+          artist: true,
+        },
+      },
     },
   });
   return data;
@@ -65,27 +71,43 @@ async function VenueDetail({ params }: Props) {
               {data.fullAddress}
               <img src={data.images[0]} alt={data.title} />
             </div>
-            <div className="bg-myBlue rounded-lg p-2 my-2 max-w-[300px] text-myCharcoal font-bold">
-              <h3 className="py-1 text-2xl">Opening Times</h3>
-              <hr />
-              <ul className="space-y-1">
-                {data.openingTime &&
-                  data.openingTime.map((times: OpeningTime) => (
-                    <div className="flex justify-between">
-                      <p key={times.id}>{showDayOfWeek(times.dayOfWeek)}:</p>{" "}
-                      <p>
-                        {timeFormat(times.openTime)} -{" "}
-                        {timeFormat(times.closeTime)}{" "}
-                      </p>
-                    </div>
-                  ))}
-              </ul>
-            </div>
           </div>
           <div className="p-2.5 lg:p-10 justify-start lg:w-1/2">
-            <h3>Entertainment</h3>
-            <div className="lg:p-10">
-              {/* <GoogleScript lat={data.lat} lng={data.lng} /> */}
+            <div>
+              <h3>Upcoming Events</h3>
+              <div className="mt-5">
+                {data.bookings?.length > 0 && (
+                  <div>
+                    {data.bookings.map((booking: Booking) => (
+                      <div className="flex">
+                        <p className="bg-myBlue p-2 ">
+                          {booking.artist.stageName}, {formatDate(booking.date)}{" "}
+                          from {formatTime(booking.start)} until{" "}
+                          {formatTime(booking.end)}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+            <div>
+              <div className="bg-myBlue rounded-lg p-2 my-2 max-w-[300px] text-myCharcoal font-bold">
+                <h3 className="py-1 text-2xl">Opening Times</h3>
+                <hr />
+                <ul className="space-y-1">
+                  {data.openingTime &&
+                    data.openingTime.map((times: OpeningTime) => (
+                      <div className="flex justify-between">
+                        <p key={times.id}>{showDayOfWeek(times.dayOfWeek)}:</p>{" "}
+                        <p>
+                          {timeFormat(times.openTime)} -{" "}
+                          {timeFormat(times.closeTime)}{" "}
+                        </p>
+                      </div>
+                    ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>

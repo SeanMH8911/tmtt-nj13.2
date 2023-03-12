@@ -9,8 +9,8 @@ function Venues({ venues }: Props) {
     <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
       {venues.map((venue: any) => (
         <Link key={venue.id} href={`/venue/${venue.id}`}>
-          <div className="m-4 max-w-[400px]">
-            <div className="relative w-full h-[200px] object-cover">
+          <div className="m-4 ">
+            <div className="relative w-[100%] h-[200px] object-cover">
               <Image
                 className="rounded-lg"
                 src={venue.images[0]}

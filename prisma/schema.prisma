@@ -77,7 +77,7 @@ model Booking {
 model Artist {
   id              String        @id @default(cuid())
   profileImg      String?
-  description     String?
+  description     String? 
   genres          String[]
   stageName       String?
   address         String?
