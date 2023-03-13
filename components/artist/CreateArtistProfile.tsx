@@ -58,12 +58,9 @@ const CreateArtistProfile = () => {
     let { url }: any = await uploadToS3(file);
     setImageUrl(url);
   };
-  useEffect(() => {
-    console.log(imageUrl);
-  }, [imageUrl]);
 
   return (
-    <div className="flex flex-col my-2 max-w-[500px]">
+    <div className="flex flex-col my-2 max-w-[500px] mx-auto">
       <form className="flex flex-col  " onSubmit={submitData}>
         <div className="space-y-2">
           <input

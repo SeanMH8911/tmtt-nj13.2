@@ -134,7 +134,7 @@ const Venue = () => {
           value={fullAddress}
           className="input-container"
         />
-        <button onClick={addressEntry} className="mt-2">
+        <button type="button" onClick={addressEntry} className="mt-2">
           Enter address manually
         </button>
         {manualEntry && (

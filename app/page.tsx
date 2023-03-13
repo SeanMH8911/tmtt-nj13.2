@@ -12,7 +12,7 @@ export default async function Home() {
   const artists = await GetAllArtists();
   return (
     <main className=" mx-auto flex flex-col justify-center items-center">
-      <SearchBox />
+      {/* <SearchBox /> */}
       <div>
         <section className="p-5">
           <h2 className="text-2xl font-bold p-4">Artists</h2>

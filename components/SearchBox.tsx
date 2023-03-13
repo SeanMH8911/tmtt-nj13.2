@@ -1,20 +1,19 @@
-'use client'
+"use client";
 
-import { Venue } from "@/types/typings"
+import { Venue } from "@/types/typings";
 
 // type Props ={
 //     venues :Venue
 // }
 
 function SearchBox() {
-    
   return (
-    <div>
-        <input type="text"
-        placeholder="Search for venue"
-        />
-    </div>
-  )
+    <input
+      type="text"
+      placeholder="Search for an artist or venue..."
+      className="input-container max-w-[300px] mx-auto"
+    />
+  );
 }
 
-export default SearchBox
+export default SearchBox;

@@ -35,6 +35,14 @@ async function dashboard() {
   const allVenues = await GetAllVenues();
   const bookings = user.artist.bookings;
 
+  const allVenuesWithDatesAsString = allVenues.map((venue: Venue) => {
+    return {
+      ...venue,
+      createdAt: venue.createdAt.toString(),
+      updatedAt: venue.updatedAt.toString(),
+    };
+  });
+
   if (user.role === "VenueOwner") {
     return (
       <div className="max-w-5xl mx-auto mt-5">
@@ -87,7 +95,7 @@ async function dashboard() {
         </div>
         <div className="mt-3">
           <div className="">
-            <AddBooking allVenues={allVenues} />
+            <AddBooking allVenues={allVenuesWithDatesAsString} />
           </div>
         </div>
       </div>

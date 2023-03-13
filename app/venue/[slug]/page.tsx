@@ -50,6 +50,8 @@ async function VenueDetail({ params }: Props) {
     return timeString;
   }
 
+  const now = new Date();
+
   return (
     <>
       {data && (
@@ -78,15 +80,22 @@ async function VenueDetail({ params }: Props) {
               <div className="mt-5">
                 {data.bookings?.length > 0 && (
                   <div>
-                    {data.bookings.map((booking: Booking) => (
-                      <div className="flex">
-                        <p className="bg-myBlue p-2 ">
-                          {booking.artist.stageName}, {formatDate(booking.date)}{" "}
-                          from {formatTime(booking.start)} until{" "}
-                          {formatTime(booking.end)}
-                        </p>
-                      </div>
-                    ))}
+                    {data.bookings
+                      .filter((booking: Booking) => {
+                        // Compare the booking date with the current date
+                        const bookingDate = new Date(booking.date);
+                        return bookingDate > now;
+                      })
+                      .map((booking: Booking) => (
+                        <div className="flex" key={booking.id}>
+                          <p className="bg-myBlue p-2 ">
+                            {booking.artist.stageName},{" "}
+                            {formatDate(booking.date)} from{" "}
+                            {formatTime(booking.start)} until{" "}
+                            {formatTime(booking.end)}
+                          </p>
+                        </div>
+                      ))}
                   </div>
                 )}
               </div>
@@ -98,7 +107,7 @@ async function VenueDetail({ params }: Props) {
                 <ul className="space-y-1">
                   {data.openingTime &&
                     data.openingTime.map((times: OpeningTime) => (
-                      <div className="flex justify-between">
+                      <div key={times.id} className="flex justify-between">
                         <p key={times.id}>{showDayOfWeek(times.dayOfWeek)}:</p>{" "}
                         <p>
                           {timeFormat(times.openTime)} -{" "}

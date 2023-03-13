@@ -5,8 +5,6 @@ type Props = {
 };
 
 export default async function getArtistDetail({ slug }: Props) {
-  console.log("this is the slug", slug);
-
   const data = await prisma.artist.findUnique({
     where: {
       id: slug,

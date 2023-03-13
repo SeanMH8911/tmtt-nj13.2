@@ -69,6 +69,7 @@ export type Artist = {
   postalCode: string;
   contactEmail: string;
   bookings: Booking[];
+  description: string;
 };
 type Booking = {
   id: string;

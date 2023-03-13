@@ -1,15 +1,16 @@
 "use client";
-import { checkBooking } from "@/lib/checkBooking";
 import { Venue } from "@/types/typings";
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { useQueryClient } from "react-query";
+
 type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
 type Props = {
   allVenues: Venue[];
 };
 
 export default function AddBooking({ allVenues }: Props) {
+  console.log(allVenues);
+
   const [bookingForm, setBookingForm] = useState(false);
   const [date, setDate] = useState("");
   const [timeFrom, setTimeFrom] = useState("");
@@ -46,6 +47,7 @@ export default function AddBooking({ allVenues }: Props) {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    toast.loading("Processing Booking...");
     try {
       const body = {
         venueId,
@@ -63,12 +65,11 @@ export default function AddBooking({ allVenues }: Props) {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
       const result = await response.json();
-      console.log(result);
       if (result.status === 409) {
         toast.error("booking already exists!");
       } else {
+        toast.dismiss();
         toast.success("booking successfully created!");
         setSearchTerm("");
         setDate("");
