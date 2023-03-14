@@ -119,6 +119,7 @@ const Venue = () => {
       <div>
         <LoadScriptNext
           googleMapsApiKey="AIzaSyBtx6X2LcZwZ-H-eZlskR_G4wXuMAZCnLE"
+          // @ts-ignore
           libraries={libraries}
         >
           <SearchForm {...addressProps} />

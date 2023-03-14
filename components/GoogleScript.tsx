@@ -11,6 +11,7 @@ function GoogleScript({ lat, lng }: Coordinates) {
     <>
       <LoadScript
         googleMapsApiKey="AIzaSyBtx6X2LcZwZ-H-eZlskR_G4wXuMAZCnLE"
+        // @ts-ignore
         libraries={libraries}
       >
         <ShowMap lat={lat} lng={lng} />

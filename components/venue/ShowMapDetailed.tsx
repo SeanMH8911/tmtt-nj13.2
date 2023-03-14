@@ -11,7 +11,7 @@ import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 // ********************************************
 // ********************************************
 // ********************************************
-
+// @ts-ignore
 const onLoad = (marker) => {
   console.log("marker: ", marker);
 };

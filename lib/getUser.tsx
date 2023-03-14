@@ -11,6 +11,11 @@ export default async function getUser() {
       id: session?.user.userId,
     },
     include: {
+      venue: {
+        include: {
+          openingTime: true,
+        },
+      },
       artist: {
         include: {
           bookings: true,
@@ -18,7 +23,6 @@ export default async function getUser() {
       },
     },
   });
-  console.log(user);
   if (!user) throw new Error(" Could not find your account");
   return user;
 }
