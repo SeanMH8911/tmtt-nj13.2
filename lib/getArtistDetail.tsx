@@ -5,13 +5,16 @@ type Props = {
 };
 
 export default async function getArtistDetail({ slug }: Props) {
-  const data = await prisma.artist.findUnique({
-    where: {
-      id: slug,
+  const data = await prisma.artist.findUnique(
+    {
+      where: {
+        id: slug,
+      },
+      include: {
+        bookings: true,
+      },
     },
-    include: {
-      bookings: true,
-    },
-  });
+    { next: { revalidate: 60 } }
+  );
   return data;
 }
