@@ -1,12 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useS3Upload } from "next-s3-upload";
-import { Coordinates } from "@/types/typings";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 import SearchForm from "./SearchForm";
 import OperatingTimes from "../OperatingTimes";
-import { LoadScript, LoadScriptNext } from "@react-google-maps/api";
+import { LoadScriptNext } from "@react-google-maps/api";
+import { toast, Toaster } from "react-hot-toast";
 
 const libraries = ["places"];
 
@@ -77,6 +76,7 @@ const Venue = () => {
 
   const submitData = async (e: React.FormEvent) => {
     e.preventDefault();
+    toast.loading("Creating Venue...");
     try {
       const body = {
         title,
@@ -92,22 +92,24 @@ const Venue = () => {
         category,
         openHours,
       };
-      await fetch(`/venues`, {
+      const response = await fetch(`/venues`, {
         method: "POST",
         body: JSON.stringify(body),
-      }).then((response) => {
-        if (response.status === 200) {
-          // setTitle("")
-          // setImages([])
-          // setCategory("")
-          // setUrls([])
-          // setFullAddress("")
-        }
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      if (result.status === 200) {
+        toast.dismiss();
+        toast.success("Venue successfully created!");
+      }
     } catch (error) {
       console.error(error);
     }
-    // router.push('/dashboard')
+    router.push("/dashboard");
   };
 
   useEffect(() => {
@@ -116,6 +118,7 @@ const Venue = () => {
 
   return (
     <div className="flex flex-col my-2">
+      <Toaster />
       <div>
         <LoadScriptNext
           googleMapsApiKey="AIzaSyBtx6X2LcZwZ-H-eZlskR_G4wXuMAZCnLE"

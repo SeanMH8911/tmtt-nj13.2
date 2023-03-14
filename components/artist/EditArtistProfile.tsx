@@ -231,14 +231,14 @@ function EditArtistProfile({ user }: Props) {
                 onChange={(e) =>
                   setUpdateArtist({
                     ...updateArtist,
-                    twitterLink: e.target.value,
+                    youtubeLink: e.target.value,
                   })
                 }
                 autoFocus
                 placeholder="Twitter Link"
                 type="text"
                 className="input-container "
-                value={updateArtist.twitterLink || ""}
+                value={updateArtist.youtubeLink || ""}
                 required={true}
               />
               <input
@@ -285,7 +285,7 @@ function EditArtistProfile({ user }: Props) {
               autoFocus
               placeholder="Contact Email"
               type="email"
-              className="input-container  "
+              className="input-container"
               value={updateArtist.contactEmail || ""}
             />
           </div>

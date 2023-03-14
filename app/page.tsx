@@ -4,7 +4,6 @@ import GetAllVenues from "@/lib/getAllVenues";
 import GetAllArtists from "@/lib/getAllArtists";
 import { Suspense } from "react";
 import ShowArtists, { ArtistSkeleton } from "@/components/artist/ShowArtists";
-
 export const revalidate = 100;
 
 export default async function Home() {

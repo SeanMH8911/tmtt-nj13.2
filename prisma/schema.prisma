@@ -84,7 +84,7 @@ model Artist {
   contactNumber   String?
   facebookLink    String?
   instagramLink   String?
-  twitterLink     String?
+  youtubeLink     String?
   websiteLink     String?
   avaiableForHire String?
   openingTimes    OpeningTime[]

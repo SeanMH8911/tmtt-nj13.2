@@ -56,7 +56,7 @@ export type Artist = {
   contactNumber: int;
   facebookLink: string;
   instagramLink: string;
-  twitterLink: string;
+  youtubeLink: string;
   websiteLink: string;
   avaiableForHire: string;
   openingTimes: OpeningTime[];

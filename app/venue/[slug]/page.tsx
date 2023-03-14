@@ -133,7 +133,7 @@ async function VenueDetail({ params }: Props) {
 
 export default VenueDetail;
 
-export async function generateStaticParams() {
-  const data = await GetAllVenues();
-  return data.map((venue: Venue) => ({ slug: venue.id }));
-}
+// export async function generateStaticParams() {
+//   const data = await GetAllVenues();
+//   return data.map((venue: Venue) => ({ slug: venue.id }));
+// }

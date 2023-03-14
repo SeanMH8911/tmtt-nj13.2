@@ -16,7 +16,7 @@ const CreateArtistProfile = () => {
   const [genres, setGenres] = useState([]);
   const [facebookLink, setFacebookLink] = useState("");
   const [instagramLink, setInstagramLink] = useState("");
-  const [twitterLink, setTwitterLink] = useState("");
+  const [youtubeLink, setYoutubeLink] = useState("");
   const [websiteLink, setWebsiteLink] = useState("");
   const [avaiableForHire, setAvaiableForHire] = useState("");
   const [imageUrl, setImageUrl] = useState();
@@ -36,7 +36,7 @@ const CreateArtistProfile = () => {
         contactNumber,
         facebookLink,
         instagramLink,
-        twitterLink,
+        youtubeLink,
         websiteLink,
         avaiableForHire,
         imageUrl,
@@ -172,12 +172,12 @@ const CreateArtistProfile = () => {
           </div>
           <div className="md:flex md:gap-2">
             <input
-              onChange={(e) => setTwitterLink(e.target.value)}
+              onChange={(e) => setYoutubeLink(e.target.value)}
               autoFocus
-              placeholder="Twitter Link"
+              placeholder="Youtube Link"
               type="text"
               className="input-container "
-              value={twitterLink}
+              value={youtubeLink}
               required={true}
             />
             <input
