@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth/next";
-import CreateVenue from "../../components/venue/CreateVenue";
+import CreateVenue from "../../../components/venue/CreateVenue";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 // redirect('/api/auth/signin')

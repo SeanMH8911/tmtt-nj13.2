@@ -1,9 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useS3Upload } from "next-s3-upload";
+import { toast, Toaster } from "react-hot-toast";
 
 const CreateArtistProfile = () => {
+  const router = useRouter();
   const [stageName, setStageName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [road, setRoad] = useState("");
@@ -24,6 +26,7 @@ const CreateArtistProfile = () => {
 
   const submitData = async (e: React.FormEvent) => {
     e.preventDefault();
+    toast.loading("Creating Artist Profile...");
     try {
       const body = {
         contactEmail,
@@ -43,15 +46,25 @@ const CreateArtistProfile = () => {
         description,
         genres,
       };
-      await fetch(`/user/artistprofile`, {
+      const response = await fetch(`/user/artistprofile`, {
         method: "POST",
         body: JSON.stringify(body),
-      }).then((response) => {
-        if (response.status === 200) {
-        }
       });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const result = await response.json();
+
+      if (result.status === 200) {
+        toast.dismiss();
+        toast.success(result.message);
+        router.push("/dashboard");
+      }
     } catch (error) {
       console.error(error);
+      toast.error(
+        "There was a problem creating your profile, please try again"
+      );
     }
   };
   let handleFileChange = async (file: File) => {
@@ -61,6 +74,7 @@ const CreateArtistProfile = () => {
 
   return (
     <div className="flex flex-col my-2 max-w-[500px] mx-auto">
+      <Toaster />
       <form className="flex flex-col  " onSubmit={submitData}>
         <div className="space-y-2">
           <input
@@ -220,7 +234,6 @@ const CreateArtistProfile = () => {
             </select>
           </div> */}
         </div>
-
         <button
           className="bg-myYellow h-[40px] rounded-lg mt-2"
           type="submit"

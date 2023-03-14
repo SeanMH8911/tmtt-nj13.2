@@ -43,7 +43,11 @@ export async function POST(request: Request) {
     });
     console.log(result);
 
-    return NextResponse.json({ result });
+    return NextResponse.json({
+      result,
+      status: 200,
+      message: "You have succesfully created your artist profile",
+    });
   } catch (error) {
     console.log(error);
     return NextResponse.json({ error: error });

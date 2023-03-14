@@ -9,8 +9,6 @@ type Props = {
 };
 
 export default function AddBooking({ allVenues }: Props) {
-  console.log(allVenues);
-
   const [bookingForm, setBookingForm] = useState(false);
   const [date, setDate] = useState("");
   const [timeFrom, setTimeFrom] = useState("");
@@ -157,7 +155,7 @@ export default function AddBooking({ allVenues }: Props) {
               <button
                 type="submit"
                 value="create"
-                className="text-white font-medium text-lg bg-myBlue rounded-lg px-4 m-0 h-[40px]"
+                className="text-white font-medium text-lg bg-myBlue rounded-lg px-4 m-0 h-[40px] hover:bg-myCharcoal"
               >
                 Create
               </button>

@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE "OpeningTime" ALTER COLUMN "openTime" SET DATA TYPE TIMETZ,
-ALTER COLUMN "closeTime" SET DATA TYPE TIMETZ;

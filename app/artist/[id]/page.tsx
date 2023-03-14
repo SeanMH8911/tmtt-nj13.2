@@ -40,7 +40,7 @@ export default async function page({ params }: Props) {
   );
 }
 
-// export async function generateStaticParams() {
-//   const data = await getAllArtist();
-//   return data.map((artist: Artist) => ({ id: artist.id }));
-// }
+export async function generateStaticParams() {
+  const data = await getAllArtist();
+  return data.map((artist: Artist) => ({ id: artist.id }));
+}

@@ -105,11 +105,11 @@ const Venue = () => {
       if (result.status === 200) {
         toast.dismiss();
         toast.success("Venue successfully created!");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.error(error);
     }
-    router.push("/dashboard");
   };
 
   useEffect(() => {
@@ -117,7 +117,7 @@ const Venue = () => {
   }, [openHours]);
 
   return (
-    <div className="flex flex-col my-2">
+    <div className="px-2 flex flex-col my-2">
       <Toaster />
       <div>
         <LoadScriptNext

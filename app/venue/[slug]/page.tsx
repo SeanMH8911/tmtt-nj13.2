@@ -30,7 +30,7 @@ async function getData({ params }: Props) {
   return data;
 }
 
-async function VenueDetail({ params }: Props) {
+export default async function VenueDetail({ params }: Props) {
   const session = await getServerSession(authOptions);
   const data = await getData({ params });
 
@@ -131,9 +131,7 @@ async function VenueDetail({ params }: Props) {
   );
 }
 
-export default VenueDetail;
-
-// export async function generateStaticParams() {
-//   const data = await GetAllVenues();
-//   return data.map((venue: Venue) => ({ slug: venue.id }));
-// }
+export async function generateStaticParams() {
+  const data = await GetAllVenues();
+  return data.map((venue: Venue) => ({ slug: venue.id }));
+}

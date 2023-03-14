@@ -1,8 +1,9 @@
 "use client";
 
 import { User } from "@/types/typings";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { toast, Toaster } from "react-hot-toast";
 
 type Props = {
   user: User;
@@ -14,29 +15,37 @@ function UserListingProfile({ user }: Props) {
 
   const updateUserRole = async (e: React.FormEvent) => {
     e.preventDefault();
+    toast.loading("updating user profile");
     try {
       const body = {
         ...updateUser,
       };
-      await fetch(`/user`, {
+      const response = await fetch(`/user`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
-      }).then((response) => {
-        if (response.status === 200) {
-        }
       });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      if (result.status === 200) {
+        toast.dismiss();
+        toast.success("Your profile has been updated");
+      }
+      if (result.result.role === "Artist") {
+        router.push(`/dashboard/profile/createArtistProfile`);
+      }
     } catch (error) {
       console.error(error);
     }
-    if (updateUser.role === "Artist") {
-      router.push(`/dashboard/profile/createArtistProfile`);
-    }
-    console.log(updateUser);
   };
   return (
     <>
       <div className="flex flex-col justify-center text-center m-2">
+        <Toaster />
         <p className="text-2xl p-4">
           Are you an artist/entertainer, or a venue owner?
         </p>

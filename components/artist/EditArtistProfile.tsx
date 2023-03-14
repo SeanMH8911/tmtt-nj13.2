@@ -60,7 +60,7 @@ function EditArtistProfile({ user }: Props) {
   return (
     <>
       <Toaster />
-      <div className="flex flex-col my-2 max-w-[500px] mx-auto">
+      <div className="flex flex-col my-2 max-w-[500px] mx-auto text-gray-500/70">
         <form className="flex flex-col  " onSubmit={updateProfile}>
           <div className="space-y-2">
             <input
@@ -84,7 +84,7 @@ function EditArtistProfile({ user }: Props) {
                 })
               }
               placeholder="Enter a short decription about yourself"
-              className="w-full p-2  border-2 border-myBlue rounded-[10px] focus:outline-myOrange"
+              className="w-full p-2  border-2 border-myBlue rounded-[10px] focus:outline-myOrange focus:text-gray-700"
               rows={5}
               value={updateArtist.description || ""}
             />
@@ -235,7 +235,7 @@ function EditArtistProfile({ user }: Props) {
                   })
                 }
                 autoFocus
-                placeholder="Twitter Link"
+                placeholder="Youtube Link"
                 type="text"
                 className="input-container "
                 value={updateArtist.youtubeLink || ""}
