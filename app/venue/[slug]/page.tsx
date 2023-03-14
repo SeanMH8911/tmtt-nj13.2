@@ -1,9 +1,11 @@
 import { formatDate, formatTime } from "@/lib/formatters";
+import GetAllVenues from "@/lib/getAllVenues";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import prisma from "@/prisma/client";
-import { Booking, OpeningTime } from "@/types/typings";
+import { Booking, OpeningTime, Venue } from "@/types/typings";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
+import { Suspense } from "react";
 
 type Props = {
   params: {
@@ -71,14 +73,16 @@ async function VenueDetail({ params }: Props) {
             <div className=" ">
               {data.zipCode}
               {data.fullAddress}
-              <img src={data.images[0]} alt={data.title} />
+              <Suspense fallback={<p>loading...</p>}>
+                <img src={data.images[0]} alt={data.title} />
+              </Suspense>
             </div>
           </div>
           <div className="p-2.5 lg:p-10 justify-start lg:w-1/2">
             <div>
               <h3>Upcoming Events</h3>
               <div className="mt-5">
-                {data.bookings?.length > 0 && (
+                {data.bookings?.length > 0 ? (
                   <div>
                     {data.bookings
                       .filter((booking: Booking) => {
@@ -97,6 +101,8 @@ async function VenueDetail({ params }: Props) {
                         </div>
                       ))}
                   </div>
+                ) : (
+                  <p>There are no upcoming events at the moment</p>
                 )}
               </div>
             </div>
@@ -126,3 +132,8 @@ async function VenueDetail({ params }: Props) {
 }
 
 export default VenueDetail;
+
+export async function generateStaticParams() {
+  const data = await GetAllVenues();
+  return data.map((venue: Venue) => ({ slug: venue.id }));
+}

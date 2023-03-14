@@ -1,3 +1,4 @@
+import getAllArtist from "@/lib/getAllArtists";
 import getArtistDetail from "@/lib/getArtistDetail";
 import { Artist } from "@/types/typings";
 import React from "react";
@@ -37,4 +38,9 @@ export default async function page({ params }: Props) {
       )}
     </div>
   );
+}
+
+export async function generateStaticParams() {
+  const data = await getAllArtist();
+  return data.map((artist: Artist) => ({ id: artist.id }));
 }
