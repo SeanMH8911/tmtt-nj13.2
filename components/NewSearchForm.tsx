@@ -1,7 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { loadGoogleMapsApi } from "./GoogleApiLoader";
 
-type GoogleMapsApi = typeof google.maps;
 export default function NewSearchForm({
   road,
   setRoad,
@@ -78,6 +77,9 @@ export default function NewSearchForm({
       event.preventDefault();
     }
   };
+  const autocompleteOptions: google.maps.places.AutocompleteOptions = {
+    componentRestrictions: { country: "es" },
+  };
 
   return (
     <div>
@@ -90,7 +92,8 @@ export default function NewSearchForm({
           ref={(input) => {
             if (input) {
               const newAutocomplete = new google.maps.places.Autocomplete(
-                input
+                input,
+                autocompleteOptions // pass the options object to the constructor
               );
               newAutocomplete.addListener("place_changed", handlePlaceSelect);
               handleAutocompleteLoad(newAutocomplete);
