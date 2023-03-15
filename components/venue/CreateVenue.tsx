@@ -4,11 +4,8 @@ import { useS3Upload } from "next-s3-upload";
 import { useRouter } from "next/navigation";
 import SearchForm from "./SearchForm";
 import OperatingTimes from "../OperatingTimes";
-import { LoadScriptNext } from "@react-google-maps/api";
 import { toast, Toaster } from "react-hot-toast";
-import NewSearchForm from "../NewSearchForm";
-
-const libraries = ["places"];
+import NewSearchForm from "../GoogleFunctions/NewSearchForm";
 
 const Venue = () => {
   const router = useRouter();

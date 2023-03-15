@@ -30,11 +30,7 @@ function EditArtistProfile({ user }: Props) {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      console.log(response);
-
       const result = await response.json();
-      console.log(result);
-
       if (result.status === 200) {
         toast.dismiss();
         toast.success("Profile updated successfully");

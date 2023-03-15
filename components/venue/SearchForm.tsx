@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import { StandaloneSearchBox } from "@react-google-maps/api";
-import { loadGoogleMapsApi } from "../GoogleApiLoader";
+import { loadGoogleMapsApi } from "../GoogleFunctions/GoogleApiLoader";
 
 export default function SearchForm({
   road,

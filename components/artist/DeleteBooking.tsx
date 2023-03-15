@@ -22,7 +22,6 @@ export default function DeleteBooking({ id }: Props) {
       if (response.status === 200) {
         toast.success(result.message);
       }
-      console.log(result);
     } catch (error) {
       console.log(error);
     }
