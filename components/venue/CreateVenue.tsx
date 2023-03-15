@@ -6,6 +6,7 @@ import SearchForm from "./SearchForm";
 import OperatingTimes from "../OperatingTimes";
 import { LoadScriptNext } from "@react-google-maps/api";
 import { toast, Toaster } from "react-hot-toast";
+import NewSearchForm from "../NewSearchForm";
 
 const libraries = ["places"];
 
@@ -120,13 +121,8 @@ const Venue = () => {
     <div className="px-2 flex flex-col my-2">
       <Toaster />
       <div>
-        {/* <LoadScriptNext
-          googleMapsApiKey="AIzaSyBtx6X2LcZwZ-H-eZlskR_G4wXuMAZCnLE"
-          // @ts-ignore
-          libraries={libraries}
-        > */}
-        <SearchForm {...addressProps} />
-        {/* </LoadScriptNext> */}
+        {/* <SearchForm {...addressProps} /> */}
+        <NewSearchForm {...addressProps} />
       </div>
       <form className="flex flex-col mt-5 " onSubmit={submitData}>
         <input

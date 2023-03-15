@@ -5,14 +5,22 @@ import GetAllArtists from "@/lib/getAllArtists";
 import { Suspense } from "react";
 import ShowArtists, { ArtistSkeleton } from "@/components/artist/ShowArtists";
 import ViewMap from "@/components/ViewMap";
+import { Venue } from "@/types/typings";
 export const revalidate = 100;
 
 export default async function Home() {
   const artists = await GetAllArtists();
   const venues = await GetAllVenues();
+  const allVenuesWithDatesAsString = venues.map((venue: Venue) => {
+    return {
+      ...venue,
+      createdAt: venue.createdAt.toString(),
+      updatedAt: venue.updatedAt.toString(),
+    };
+  });
   return (
     <main className=" mx-auto flex flex-col justify-center items-center">
-      <ViewMap venues={venues} />
+      <ViewMap venues={allVenuesWithDatesAsString} />
       {/* <SearchBox /> */}
       <div>
         <section className="p-5">

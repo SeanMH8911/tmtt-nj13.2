@@ -1,13 +1,14 @@
 "use client";
 
 import { Venue } from "@/types/typings";
+import { StandaloneSearchBox } from "@react-google-maps/api";
 import { useEffect, useRef, useState } from "react";
 import { loadGoogleMapsApi } from "./GoogleApiLoader";
 
 type Props = {
   venues: Venue[];
 };
-function GoogleMap({ venues }: Props) {
+export default function GoogleMap({ venues }: Props) {
   const googleMapRef = useRef(null);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
 
@@ -49,5 +50,3 @@ function GoogleMap({ venues }: Props) {
     />
   );
 }
-
-export default GoogleMap;

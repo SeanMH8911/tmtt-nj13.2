@@ -24,10 +24,13 @@ export default function SearchForm({
   setTitle,
 }: any) {
   const [searchBox, setSearchBox] = useState(null);
+  const [apiLoaded, setApiLoaded] = useState(false);
 
   useEffect(() => {
-    loadGoogleMapsApi();
-  }, []);
+    if (!apiLoaded) {
+      loadGoogleMapsApi().then(() => setApiLoaded(true));
+    }
+  }, [apiLoaded]);
 
   const onPlacesChanged = () => {
     // @ts-ignore
