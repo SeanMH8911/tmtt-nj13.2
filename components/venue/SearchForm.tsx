@@ -1,6 +1,7 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { StandaloneSearchBox } from "@react-google-maps/api";
+import { loadGoogleMapsApi } from "../GoogleApiLoader";
 
 export default function SearchForm({
   road,
@@ -23,6 +24,11 @@ export default function SearchForm({
   setTitle,
 }: any) {
   const [searchBox, setSearchBox] = useState(null);
+
+  useEffect(() => {
+    loadGoogleMapsApi();
+  }, []);
+
   const onPlacesChanged = () => {
     // @ts-ignore
     const data = searchBox.getPlaces();
@@ -60,20 +66,10 @@ export default function SearchForm({
   const onSBLoad = (ref) => {
     setSearchBox(ref);
   };
-  const bounds = {
-    north: 29.5,
-    south: 27.5,
-    east: -13.5,
-    west: -18.5,
-  };
 
   return (
     <>
-      <StandaloneSearchBox
-        onLoad={onSBLoad}
-        onPlacesChanged={onPlacesChanged}
-        bounds={bounds}
-      >
+      <StandaloneSearchBox onLoad={onSBLoad} onPlacesChanged={onPlacesChanged}>
         <input
           type="text"
           placeholder="Search for your business"

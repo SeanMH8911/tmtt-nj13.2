@@ -44,7 +44,7 @@ function UserListingProfile({ user }: Props) {
   };
   return (
     <>
-      <div className="flex flex-col justify-center text-center m-2">
+      <div className=" flex flex-col justify-center text-center m-2">
         <Toaster />
         <p className="text-2xl p-4">
           Are you an artist/entertainer, or a venue owner?

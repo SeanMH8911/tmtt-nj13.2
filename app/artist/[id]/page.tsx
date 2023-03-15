@@ -20,27 +20,27 @@ export default async function page({ params }: Props) {
   // console.log(artist);
 
   return (
-    <div className="">
+    <article className="md:max-w-5xl md:mx-auto">
       {artist && (
-        <div className="flex items-center p-5">
-          <img
-            src={artist.profileImg}
-            alt={artist.stageName}
-            className="rounded-full h-[300px] w-[300px] object-cover"
-          />
-          <div className="p-5">
-            <h2>{artist.stageName}</h2>
-            <p>
-              Available for hire: {availableForHire(artist.avaiableForHire)}
-            </p>
+        <div className="flex flex-col md:flex-row">
+          <div className="flex flex-col justify-center items-center">
+            <h2 className="font-bold text-2xl mb-2">{artist.stageName}</h2>
+            <img
+              src={artist.profileImg}
+              alt={artist.stageName}
+              className="rounded-full h-[200px] w-[200px] md:h-[300px] md:w-[300px] object-cover"
+            />
+          </div>
+          <div className=" ">
+            <h3>Upcoming Events</h3>
           </div>
         </div>
       )}
-    </div>
+    </article>
   );
 }
 
-export async function generateStaticParams() {
-  const data = await getAllArtist();
-  return data.map((artist: Artist) => ({ id: artist.id }));
-}
+// export async function generateStaticParams() {
+//   const data = await getAllArtist();
+//   return data.map((artist: Artist) => ({ id: artist.id }));
+// }

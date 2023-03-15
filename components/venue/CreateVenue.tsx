@@ -120,13 +120,13 @@ const Venue = () => {
     <div className="px-2 flex flex-col my-2">
       <Toaster />
       <div>
-        <LoadScriptNext
+        {/* <LoadScriptNext
           googleMapsApiKey="AIzaSyBtx6X2LcZwZ-H-eZlskR_G4wXuMAZCnLE"
           // @ts-ignore
           libraries={libraries}
-        >
-          <SearchForm {...addressProps} />
-        </LoadScriptNext>
+        > */}
+        <SearchForm {...addressProps} />
+        {/* </LoadScriptNext> */}
       </div>
       <form className="flex flex-col mt-5 " onSubmit={submitData}>
         <input

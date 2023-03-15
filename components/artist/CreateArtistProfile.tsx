@@ -73,7 +73,7 @@ const CreateArtistProfile = () => {
   };
 
   return (
-    <div className="flex flex-col my-2 max-w-[500px] mx-auto">
+    <div className="px-2 flex flex-col my-2 max-w-[500px] mx-auto">
       <Toaster />
       <form className="flex flex-col  " onSubmit={submitData}>
         <div className="space-y-2">
