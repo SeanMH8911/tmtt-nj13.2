@@ -1,3 +1,4 @@
+import ArtistLogos from "@/components/artist/ArtistLogos";
 import getAllArtist from "@/lib/getAllArtists";
 import getArtistDetail from "@/lib/getArtistDetail";
 import { Artist } from "@/types/typings";
@@ -17,7 +18,7 @@ function availableForHire(x: boolean | String) {
 export default async function page({ params }: Props) {
   const slug = params.id;
   const artist: Artist = await getArtistDetail({ slug });
-  // console.log(artist);
+  console.log(artist);
 
   return (
     <article className="md:max-w-5xl md:mx-auto">
@@ -30,6 +31,14 @@ export default async function page({ params }: Props) {
               alt={artist.stageName}
               className="rounded-full h-[200px] w-[200px] md:h-[300px] md:w-[300px] object-cover"
             />
+            <div className="flex space-x-2">
+              <ArtistLogos
+                facebook={artist.facebookLink}
+                instagram={artist.instagramLink}
+                youtube={artist.youtubeLink}
+                website={artist.websiteLink}
+              />
+            </div>
           </div>
           <div className=" ">
             <h3>Upcoming Events</h3>

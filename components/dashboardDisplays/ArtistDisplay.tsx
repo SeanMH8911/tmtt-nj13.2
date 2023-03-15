@@ -3,7 +3,7 @@ import { Venue } from "@/types/typings";
 import { Booking } from "@prisma/client";
 import Link from "next/link";
 import React from "react";
-import AddBooking from "../artist/AddBooking";
+import CreateBooking from "../artist/CreateBooking";
 import DeleteBooking from "../artist/DeleteBooking";
 type Props = {
   allVenues: Venue[];
@@ -63,7 +63,7 @@ export default function ArtistDisplay({ allVenues, bookings }: Props) {
       </div>
       <div className="mt-3">
         <div className="">
-          <AddBooking allVenues={allVenuesWithDatesAsString} />
+          <CreateBooking allVenues={allVenuesWithDatesAsString} />
         </div>
       </div>
     </div>

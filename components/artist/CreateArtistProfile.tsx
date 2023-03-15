@@ -172,7 +172,6 @@ const CreateArtistProfile = () => {
               type="text"
               className="input-container "
               value={facebookLink}
-              required={true}
             />
             <input
               onChange={(e) => setInstagramLink(e.target.value)}
@@ -181,7 +180,6 @@ const CreateArtistProfile = () => {
               type="text"
               className="input-container "
               value={instagramLink}
-              required={true}
             />
           </div>
           <div className="md:flex md:gap-2">
@@ -192,7 +190,6 @@ const CreateArtistProfile = () => {
               type="text"
               className="input-container "
               value={youtubeLink}
-              required={true}
             />
             <input
               onChange={(e) => setWebsiteLink(e.target.value)}
@@ -201,7 +198,6 @@ const CreateArtistProfile = () => {
               type="text"
               className="input-container  "
               value={websiteLink}
-              required={true}
             />
           </div>
           <div>

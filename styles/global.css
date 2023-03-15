@@ -14,6 +14,20 @@
   .input-container:focus {
     outline-color: #f26419;
     border-radius: 10px;
+    /* color: rgb(55 65 81 /1); */
+  }
+
+  .input-container-edit {
+    width: 100%;
+    height: 40px;
+    border: 2px solid #86bbd8;
+    border-radius: 10px;
+    padding: 6px;
+    color: rgb(107 114 128 / 0.7);
+  }
+  .input-container-edit:focus {
     color: rgb(55 65 81 /1);
+    outline-color: #f26419;
+    border-radius: 10px;
   }
 }

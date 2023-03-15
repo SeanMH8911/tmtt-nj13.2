@@ -70,7 +70,7 @@ function EditArtistProfile({ user }: Props) {
               placeholder="Stage Name"
               type="text"
               value={updateArtist.stageName || ""}
-              className="input-container"
+              className="input-container-edit "
             />
             <textarea
               onChange={(e) =>
@@ -80,7 +80,7 @@ function EditArtistProfile({ user }: Props) {
                 })
               }
               placeholder="Enter a short decription about yourself"
-              className="w-full p-2  border-2 border-myBlue rounded-[10px] focus:outline-myOrange focus:text-gray-700"
+              className="w-full p-2  border-2 border-myBlue rounded-[10px] focus:outline-myOrange text-gray-500/70 focus:text-gray-700"
               rows={5}
               value={updateArtist.description || ""}
             />
@@ -115,7 +115,7 @@ function EditArtistProfile({ user }: Props) {
                 autoFocus
                 placeholder="First line of address"
                 type="text"
-                className="input-container mt-2 md:w-2/3"
+                className="input-container-edit  mt-2 md:w-2/3"
                 value={updateArtist.streetName || ""}
                 required={true}
               />
@@ -129,7 +129,7 @@ function EditArtistProfile({ user }: Props) {
                 autoFocus
                 placeholder="Locality (e.g Adeje)"
                 type="text"
-                className="input-container mt-2 md:w-1/3"
+                className="input-container-edit  mt-2 md:w-1/3"
                 value={updateArtist.locality || ""}
                 required={true}
               />
@@ -145,7 +145,7 @@ function EditArtistProfile({ user }: Props) {
                 autoFocus
                 placeholder="Province"
                 type="text"
-                className="input-container mt-2"
+                className="input-container-edit  mt-2"
                 value={updateArtist.area || ""}
                 required={true}
               />
@@ -159,7 +159,7 @@ function EditArtistProfile({ user }: Props) {
                 autoFocus
                 placeholder="Post Code"
                 type="text"
-                className="input-container mt-2"
+                className="input-container-edit  mt-2"
                 value={updateArtist.postalCode || ""}
                 required={true}
               />
@@ -173,7 +173,7 @@ function EditArtistProfile({ user }: Props) {
                 autoFocus
                 placeholder="Country"
                 type="text"
-                className="input-container mt-2 "
+                className="input-container-edit  mt-2 "
                 value={updateArtist.country || ""}
                 required={true}
               />
@@ -188,7 +188,7 @@ function EditArtistProfile({ user }: Props) {
               autoFocus
               placeholder="Contact Number"
               type="number"
-              className="input-container "
+              className="input-container-edit  "
               value={updateArtist.contactNumber || ""}
               required={true}
             />
@@ -203,9 +203,8 @@ function EditArtistProfile({ user }: Props) {
                 autoFocus
                 placeholder="Facebook Link"
                 type="text"
-                className="input-container "
+                className="input-container-edit  "
                 value={updateArtist.facebookLink || ""}
-                required={true}
               />
               <input
                 onChange={(e) =>
@@ -217,9 +216,8 @@ function EditArtistProfile({ user }: Props) {
                 autoFocus
                 placeholder="Instagram Link"
                 type="text"
-                className="input-container "
+                className="input-container-edit  "
                 value={updateArtist.instagramLink || ""}
-                required={true}
               />
             </div>
             <div className="md:flex md:gap-2">
@@ -233,9 +231,8 @@ function EditArtistProfile({ user }: Props) {
                 autoFocus
                 placeholder="Youtube Link"
                 type="text"
-                className="input-container "
+                className="input-container-edit  "
                 value={updateArtist.youtubeLink || ""}
-                required={true}
               />
               <input
                 onChange={(e) =>
@@ -247,9 +244,8 @@ function EditArtistProfile({ user }: Props) {
                 autoFocus
                 placeholder="Website Link"
                 type="text"
-                className="input-container  "
+                className="input-container-edit   "
                 value={updateArtist.websiteLink || ""}
-                required={true}
               />
             </div>
             <div>
@@ -264,7 +260,7 @@ function EditArtistProfile({ user }: Props) {
                 }
                 placeholder="Category"
                 value={updateArtist.avaiableForHire || ""}
-                className="input-container"
+                className="input-container-edit "
                 required={true}
               >
                 <option value="false">No</option>
@@ -281,12 +277,12 @@ function EditArtistProfile({ user }: Props) {
               autoFocus
               placeholder="Contact Email"
               type="email"
-              className="input-container"
+              className="input-container-edit "
               value={updateArtist.contactEmail || ""}
             />
           </div>
           <button
-            className="bg-myYellow h-[40px] rounded-lg mt-2"
+            className="bg-myYellow h-[40px] rounded-lg mt-2 text-myCharcoal"
             type="submit"
             value="Create"
           >

@@ -8,7 +8,7 @@ type Props = {
   allVenues: Venue[];
 };
 
-export default function AddBooking({ allVenues }: Props) {
+export default function CreateBooking({ allVenues }: Props) {
   const [bookingForm, setBookingForm] = useState(false);
   const [date, setDate] = useState("");
   const [timeFrom, setTimeFrom] = useState("");
