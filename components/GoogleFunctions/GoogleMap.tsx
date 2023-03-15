@@ -33,6 +33,19 @@ export default function GoogleMap({ venues }: Props) {
         map: googleMap,
         title: venue.title,
       });
+
+      // Create an info window for the venue
+      const infoWindow = new window.google.maps.InfoWindow({
+        content: `<div>
+                  <h3>${venue.title}</h3>
+                  <p></p>
+                </div>`,
+      });
+
+      // Add click event listener to the marker
+      marker.addListener("click", () => {
+        infoWindow.open(googleMap, marker);
+      });
     });
 
     // Set the center of the map to the average of all venue coordinates
