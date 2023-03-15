@@ -47,7 +47,7 @@ const EditVenue = ({ venue }: Props) => {
   };
 
   return (
-    <div className="flex flex-col my-2 text-gray-500/70">
+    <div className="flex flex-col my-2 text-gray-500/70 p-2">
       <div></div>
       <form className="flex flex-col mt-5 " onSubmit={submitData}>
         <input

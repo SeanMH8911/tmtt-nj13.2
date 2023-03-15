@@ -33,6 +33,7 @@ async function getData({ params }: Props) {
 export default async function VenueDetail({ params }: Props) {
   const session = await getServerSession(authOptions);
   const data = await getData({ params });
+  console.log(data);
 
   function showDayOfWeek(i: any) {
     if (i === 0) return "Sunday";
@@ -42,14 +43,6 @@ export default async function VenueDetail({ params }: Props) {
     if (i === 4) return "Thursday";
     if (i === 5) return "Friday";
     if (i === 6) return "Saturday";
-  }
-  function timeFormat(i: any) {
-    const timeString = new Date(`${i}`).toLocaleTimeString("en-US", {
-      hour12: true,
-      hour: "numeric",
-      minute: "numeric",
-    });
-    return timeString;
   }
 
   const now = new Date();
@@ -116,8 +109,8 @@ export default async function VenueDetail({ params }: Props) {
                       <div key={times.id} className="flex justify-between">
                         <p key={times.id}>{showDayOfWeek(times.dayOfWeek)}:</p>{" "}
                         <p>
-                          {timeFormat(times.openTime)} -{" "}
-                          {timeFormat(times.closeTime)}{" "}
+                          {formatTime(times.openTime)} -{" "}
+                          {formatTime(times.closeTime)}{" "}
                         </p>
                       </div>
                     ))}

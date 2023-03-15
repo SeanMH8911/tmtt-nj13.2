@@ -205,7 +205,7 @@ const Venue = () => {
           <option value="Restaurant">Restaurant</option>
           <option value="Bar">Bar</option>
         </select>
-        <div>
+        <div className="">
           <OperatingTimes
             openHours={openHours}
             setOpenHours={setOpenHours}
