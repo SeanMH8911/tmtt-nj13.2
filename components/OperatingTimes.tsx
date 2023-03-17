@@ -30,19 +30,6 @@ function OperatingTimes({
     setOpenHours(newOpenHours);
   }
 
-  function handleCheckboxChange(index: number, e: ChangeEvent) {
-    const { checked } = e.target;
-    const newOpenHours = [...openHours];
-    newOpenHours[index].isOpen = checked;
-    if (!checked) {
-      newOpenHours[index].timePeriods = [
-        { openTime: "", closingTime: "" },
-        { openTime: "", closingTime: "" },
-      ];
-    }
-    setOpenHours(newOpenHours);
-  }
-
   return (
     <div className="bg-myBlue/50 p-1 rounded-lg mt-2">
       <button
@@ -55,53 +42,45 @@ function OperatingTimes({
       {openHours.map((day: Day, index: number) => (
         <div key={day.day} className=" items-center  ">
           <div className=" flex items-center">
-            <input
-              className=""
-              type="checkbox"
-              checked={day.isOpen}
-              onChange={(e) => handleCheckboxChange(index, e)}
-            />
             <label className="text-2xl ml-1">{showDayOfWeek(day.day)}</label>
           </div>
 
           <div className=" space-x-2 space-y-2 ">
-            {day.isOpen && (
-              <>
-                <input
-                  className="input-container max-w-[80px] m-0"
-                  type="time"
-                  name="openTime"
-                  value={day.timePeriods[0].openTime}
-                  onChange={(e) => handleInputChange(index, 0, e)}
-                />
-                <input
-                  className="input-container max-w-[80px] m-0"
-                  type="time"
-                  name="closingTime"
-                  value={day.timePeriods[0].closingTime}
-                  onChange={(e) => handleInputChange(index, 0, e)}
-                />
+            <>
+              <input
+                className="input-container max-w-[90px] m-0"
+                type="time"
+                name="openTime"
+                value={day.timePeriods[0].openTime}
+                onChange={(e) => handleInputChange(index, 0, e)}
+              />
+              <input
+                className="input-container max-w-[90px] m-0"
+                type="time"
+                name="closingTime"
+                value={day.timePeriods[0].closingTime}
+                onChange={(e) => handleInputChange(index, 0, e)}
+              />
 
-                {addSecondTimeSlot && (
-                  <>
-                    <input
-                      className="input-container max-w-[80px] m-0"
-                      type="time"
-                      name="openTime"
-                      value={day.timePeriods[1].openTime}
-                      onChange={(e) => handleInputChange(index, 1, e)}
-                    />
-                    <input
-                      className="input-container max-w-[80px] m-0"
-                      type="time"
-                      name="closingTime"
-                      value={day.timePeriods[1].closingTime}
-                      onChange={(e) => handleInputChange(index, 1, e)}
-                    />
-                  </>
-                )}
-              </>
-            )}
+              {addSecondTimeSlot && (
+                <>
+                  <input
+                    className="input-container max-w-[90px] m-0"
+                    type="time"
+                    name="openTime"
+                    value={day.timePeriods[1].openTime}
+                    onChange={(e) => handleInputChange(index, 1, e)}
+                  />
+                  <input
+                    className="input-container max-w-[90px] m-0"
+                    type="time"
+                    name="closingTime"
+                    value={day.timePeriods[1].closingTime}
+                    onChange={(e) => handleInputChange(index, 1, e)}
+                  />
+                </>
+              )}
+            </>
           </div>
         </div>
       ))}

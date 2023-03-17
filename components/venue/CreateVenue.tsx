@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { useS3Upload } from "next-s3-upload";
 import { useRouter } from "next/navigation";
-import SearchForm from "./SearchForm";
 import OperatingTimes from "../OperatingTimes";
 import { toast, Toaster } from "react-hot-toast";
 import NewSearchForm from "../GoogleFunctions/NewSearchForm";
@@ -27,13 +26,13 @@ const Venue = () => {
   const [addSecondTimeSlot, setAddSecondTimeSlot] = useState(false);
   // prettier-ignore
   const [openHours, setOpenHours] = useState([
-  { day: 0, isOpen: true, timePeriods: [{ openTime: '', closingTime: '' }, { openTime: '', closingTime: '' }] },
-  { day: 1, isOpen: true, timePeriods: [{ openTime: '', closingTime: '' }, { openTime: '', closingTime: '' }] },
-  { day: 2, isOpen: true, timePeriods: [{ openTime: '', closingTime: '' }, { openTime: '', closingTime: '' }] },
-  { day: 3, isOpen: true, timePeriods: [{ openTime: '', closingTime: '' }, { openTime: '', closingTime: '' }] },
-  { day: 4, isOpen: true, timePeriods: [{ openTime: '', closingTime: '' }, { openTime: '', closingTime: '' }] },
-  { day: 5, isOpen: true, timePeriods: [{ openTime: '', closingTime: '' }, { openTime: '', closingTime: '' }] },
-  { day: 6, isOpen: true, timePeriods: [{ openTime: '', closingTime: '' }, { openTime: '', closingTime: '' }] },
+  { day: 0, timePeriods: [{ openTime: '', closingTime: '' }, { openTime: '', closingTime: '' }] },
+  { day: 1, timePeriods: [{ openTime: '', closingTime: '' }, { openTime: '', closingTime: '' }] },
+  { day: 2, timePeriods: [{ openTime: '', closingTime: '' }, { openTime: '', closingTime: '' }] },
+  { day: 3, timePeriods: [{ openTime: '', closingTime: '' }, { openTime: '', closingTime: '' }] },
+  { day: 4, timePeriods: [{ openTime: '', closingTime: '' }, { openTime: '', closingTime: '' }] },
+  { day: 5, timePeriods: [{ openTime: '', closingTime: '' }, { openTime: '', closingTime: '' }] },
+  { day: 6, timePeriods: [{ openTime: '', closingTime: '' }, { openTime: '', closingTime: '' }] },
     ]);
 
   const addressProps = {

@@ -87,7 +87,6 @@ type Booking = {
 
 interface Day {
   day: number;
-  isOpen: boolean;
   timePeriods: {
     openTime: string;
     closingTime: string;
@@ -101,6 +100,13 @@ type Time = {
     openTime: string;
     closingTime: string;
   }[];
+  openTime: string;
+  closingTime: string;
+  midOpenTime: string;
+  midCloseTime: string;
+  dayOfWeek: number;
+  closeTime: string;
+  id: string;
 };
 
 export declare type Libraries = (

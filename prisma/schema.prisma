@@ -30,7 +30,7 @@ model Venue {
   lat           Float?
   lng           Float?
   venueCategory String?
-  openingTime   OpeningTime[]
+  openingTime   OpeningTime[] 
   bookings      Booking[]
 }
 

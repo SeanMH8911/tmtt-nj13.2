@@ -1,5 +1,5 @@
 import EditVenue from "@/components/venue/EditVenue";
-import prisma from "@/prisma/client";
+import getVenueDetail from "@/lib/getVenueDetail";
 
 type Props = {
   params: {
@@ -9,11 +9,7 @@ type Props = {
 
 async function editVenuePage({ params }: Props) {
   const slug = params.slug;
-  const data = await prisma.venue.findUnique({
-    where: {
-      id: slug,
-    },
-  });
+  const data = await getVenueDetail({ slug });
 
   const allVenuesWithDatesAsString = {
     ...data,

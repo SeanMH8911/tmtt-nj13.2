@@ -1,8 +1,8 @@
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import prisma from "@/prisma/client";
-import { OpeningTime, Time } from "@/types/typings";
+import { Time } from "@/types/typings";
 import { getServerSession } from "next-auth/next";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
   try {
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
       },
     });
     const body = await request.json();
-    console.log(body);
+    console.log(body.openHours);
 
     const openingTimeData = {
       create: body.openHours.map((time: Time) => ({
@@ -45,6 +45,7 @@ export async function POST(request: Request) {
           : null,
       })),
     };
+    console.log(openingTimeData);
 
     const result = await prisma.venue.create({
       data: {

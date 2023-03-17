@@ -3,6 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useS3Upload } from "next-s3-upload";
 import { Venue } from "@/types/typings";
 import { useRouter } from "next/navigation";
+import EditOperatingTimes from "../EditOperatingTimes";
+import { OpeningTime } from "@prisma/client";
+import { formatDayOfWeek, formatTime } from "@/lib/formatters";
+import { toast, Toaster } from "react-hot-toast";
 
 type Props = {
   venue: Venue;
@@ -10,10 +14,13 @@ type Props = {
 
 const EditVenue = ({ venue }: Props) => {
   const router = useRouter();
+
   const [venueDetail, setVenueDetail] = useState(venue);
   const [images, setImages] = useState<string[]>([]);
   const [urls, setUrls] = useState<string[]>([]);
   const { uploadToS3 } = useS3Upload();
+  const [addSecondTimeSlot, setAddSecondTimeSlot] = useState(false);
+  const [editOpeningTimes, setEditOpeningTimes] = useState(false);
 
   const handleFilesChange = async ({ target }: any) => {
     const files = Array.from(target.files);
@@ -24,31 +31,44 @@ const EditVenue = ({ venue }: Props) => {
       setImages((current) => [...current, url]);
     }
   };
-
   const submitData = async (e: React.FormEvent) => {
     e.preventDefault();
+    toast.loading("Updating venue...");
     try {
       const body = {
         ...venueDetail,
         images,
       };
-      await fetch(`/venues/${venue.id}`, {
+      console.log(body);
+
+      const response = await fetch(`/venues/${venue.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
-      }).then((response) => {
-        if (response.status === 200) {
-        }
       });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      if (result.status === 200) {
+        toast.dismiss();
+        toast.success(result.message);
+        router.push(`/dashboard`);
+      }
     } catch (error) {
       console.error(error);
     }
-    router.push(`/dashboard`);
   };
 
+  useEffect(() => {
+    console.log(venueDetail);
+  }, [venueDetail]);
   return (
     <div className="flex flex-col my-2 text-gray-500/70 p-2">
-      <div></div>
+      <div>
+        <Toaster />
+      </div>
       <form className="flex flex-col mt-5 " onSubmit={submitData}>
         <input
           hidden={true}
@@ -168,6 +188,52 @@ const EditVenue = ({ venue }: Props) => {
           <option value="Restaurant">Restaurant</option>
           <option value="Bar">Bar</option>
         </select>
+        <div>
+          <div className="bg-myBlue rounded-lg p-2 my-2 text-myCharcoal font-bold  max-w-[400px] mx-auto">
+            {/* OpeningTimes with edit button  */}
+            <div className="flex justify-between items-center">
+              <h3 className="py-1 text-2xl">Opening Times</h3>
+              <button type="button" onClick={() => setEditOpeningTimes(true)}>
+                Edit
+              </button>
+            </div>
+            <hr />
+            <ul className="space-y-1">
+              {venueDetail.openingTime &&
+                venueDetail.openingTime.map((times: OpeningTime) => (
+                  <div key={times.id} className="flex justify-between">
+                    <p key={times.id}>{formatDayOfWeek(times.dayOfWeek)}:</p>{" "}
+                    <p>
+                      {times.openTime !== null
+                        ? formatTime(times.openTime)
+                        : `Closed`}
+                      {times.closeTime !== null && `-`}
+                      {times.closeTime !== null
+                        ? formatTime(times.closeTime)
+                        : null}
+                      {times.midOpenTime !== null && ", "}
+                      {times.midOpenTime !== null
+                        ? formatTime(times.midOpenTime)
+                        : null}
+                      {times.midCloseTime !== null && `-`}
+                      {times.midCloseTime !== null
+                        ? formatTime(times.midCloseTime)
+                        : null}
+                    </p>
+                  </div>
+                ))}
+            </ul>
+          </div>
+          {/* editable opening times  */}
+          {editOpeningTimes && (
+            <EditOperatingTimes
+              venueDetail={venueDetail}
+              setVenueDetail={setVenueDetail}
+              addSecondTimeSlot={addSecondTimeSlot}
+              setAddSecondTimeSlot={setAddSecondTimeSlot}
+            />
+          )}
+        </div>
         <label className="mt-2">Upload Images</label>
         <input
           type="file"
@@ -195,7 +261,7 @@ const EditVenue = ({ venue }: Props) => {
           type="submit"
           value="Create"
         >
-          Create
+          Update
         </button>
       </form>
     </div>

@@ -100,7 +100,7 @@ export default async function VenueDetail({ params }: Props) {
               </div>
             </div>
             <div>
-              <div className="bg-myBlue rounded-lg p-2 my-2 max-w-[300px] text-myCharcoal font-bold">
+              <div className="bg-myBlue rounded-lg p-2 my-2 text-myCharcoal font-bold  max-w-[400px]">
                 <h3 className="py-1 text-2xl">Opening Times</h3>
                 <hr />
                 <ul className="space-y-1">
@@ -109,8 +109,21 @@ export default async function VenueDetail({ params }: Props) {
                       <div key={times.id} className="flex justify-between">
                         <p key={times.id}>{showDayOfWeek(times.dayOfWeek)}:</p>{" "}
                         <p>
-                          {formatTime(times.openTime)} -{" "}
-                          {formatTime(times.closeTime)}{" "}
+                          {times.openTime !== null
+                            ? formatTime(times.openTime)
+                            : `Closed`}
+                          {times.closeTime !== null && `-`}
+                          {times.closeTime !== null
+                            ? formatTime(times.closeTime)
+                            : null}
+                          {times.midOpenTime !== null && ", "}
+                          {times.midOpenTime !== null
+                            ? formatTime(times.midOpenTime)
+                            : null}
+                          {times.midCloseTime !== null && `-`}
+                          {times.midCloseTime !== null
+                            ? formatTime(times.midCloseTime)
+                            : null}
                         </p>
                       </div>
                     ))}
