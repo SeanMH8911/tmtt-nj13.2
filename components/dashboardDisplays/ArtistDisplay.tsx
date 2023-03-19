@@ -1,3 +1,4 @@
+"use client";
 import { formatDate, formatTime } from "@/lib/formatters";
 import { Venue } from "@/types/typings";
 import { Booking } from "@prisma/client";
@@ -5,12 +6,22 @@ import Link from "next/link";
 import React from "react";
 import CreateBooking from "../artist/CreateBooking";
 import DeleteBooking from "../artist/DeleteBooking";
+
 type Props = {
   allVenues: Venue[];
   bookings: Booking[];
 };
 
+async function getData() {
+  const data = await fetch("/bookings/mybookings");
+  const response = await data.json();
+  return response;
+}
+
 export default function ArtistDisplay({ allVenues, bookings }: Props) {
+  const user = getData();
+  console.log(user);
+
   const allVenuesWithDatesAsString = allVenues.map((venue: Venue) => {
     return {
       ...venue,

@@ -89,7 +89,7 @@ export async function DELETE(request: Request) {
     return NextResponse.json({
       booking,
       status: 200,
-      message: "Booking has been succesfully deleted!",
+      message: "Your booking has been succesfully deleted!",
     });
   } catch (error) {
     console.log(error);

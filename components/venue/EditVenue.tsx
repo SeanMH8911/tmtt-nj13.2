@@ -31,14 +31,25 @@ const EditVenue = ({ venue }: Props) => {
       setImages((current) => [...current, url]);
     }
   };
+
+  useEffect(() => {
+    console.log(venueDetail);
+  }, [venueDetail]);
+  useEffect(() => {
+    console.log(images);
+  }, [images]);
   const submitData = async (e: React.FormEvent) => {
     e.preventDefault();
     toast.loading("Updating venue...");
     try {
-      const body = {
+      let body: any = {};
+      if (images.length > 0) {
+        body.images = images;
+      }
+      body = {
         ...venueDetail,
-        images,
       };
+
       console.log(body);
 
       const response = await fetch(`/venues/${venue.id}`, {

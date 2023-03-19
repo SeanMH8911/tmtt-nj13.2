@@ -25,7 +25,6 @@ export default async function Home() {
       <div>
         <section className="p-5">
           <h2 className="text-2xl font-bold p-4">Artists</h2>
-          {/* @ts-expect-error Async Server Component */}
           <Suspense fallback={<ArtistSkeleton />}>
             {artists && <ShowArtists artists={artists} />}
           </Suspense>

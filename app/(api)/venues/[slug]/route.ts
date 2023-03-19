@@ -26,7 +26,6 @@ export async function PATCH(request: Request, { params }: Params) {
         },
       };
     });
-    // Only update image if there is an image, add function
     const result = await prisma.venue.update({
       where: {
         id: slug,

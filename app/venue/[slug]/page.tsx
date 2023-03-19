@@ -2,10 +2,11 @@ import { formatDate, formatTime } from "@/lib/formatters";
 import GetAllVenues from "@/lib/getAllVenues";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import prisma from "@/prisma/client";
-import { Booking, OpeningTime, Venue } from "@/types/typings";
+import { Booking, OpeningTime, Time, Venue } from "@/types/typings";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { Suspense } from "react";
+import { formatDayOfWeek } from "../../../lib/formatters";
 
 type Props = {
   params: {
@@ -34,16 +35,6 @@ export default async function VenueDetail({ params }: Props) {
   const session = await getServerSession(authOptions);
   const data = await getData({ params });
   console.log(data);
-
-  function showDayOfWeek(i: any) {
-    if (i === 0) return "Sunday";
-    if (i === 1) return "Monday";
-    if (i === 2) return "Tuesday";
-    if (i === 3) return "Wednesday";
-    if (i === 4) return "Thursday";
-    if (i === 5) return "Friday";
-    if (i === 6) return "Saturday";
-  }
 
   const now = new Date();
 
@@ -107,7 +98,9 @@ export default async function VenueDetail({ params }: Props) {
                   {data.openingTime &&
                     data.openingTime.map((times: OpeningTime) => (
                       <div key={times.id} className="flex justify-between">
-                        <p key={times.id}>{showDayOfWeek(times.dayOfWeek)}:</p>{" "}
+                        <p key={times.id}>
+                          {formatDayOfWeek(times.dayOfWeek)}:
+                        </p>{" "}
                         <p>
                           {times.openTime !== null
                             ? formatTime(times.openTime)

@@ -40,17 +40,19 @@ export default function ShowArtists({ artists }: Props) {
 }
 
 export function ArtistSkeleton() {
-  <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
-    <div className="flex flex-col justify-center items-center">
-      <img
-        className="rounded-full w-[200px] h-[200px] object-cover"
-        src=""
-        alt=""
-      />
-      <div className="text-center">
-        <h1 className="font-medium text-2xl"></h1>
-        <p className="text-sm text-gray-600/80"></p>
+  return (
+    <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+      <div className="flex flex-col justify-center items-center">
+        <img
+          className="rounded-full w-[200px] h-[200px] object-cover"
+          src=""
+          alt=""
+        />
+        <div className="text-center">
+          <h1 className="font-medium text-2xl"></h1>
+          <p className="text-sm text-gray-600/80"></p>
+        </div>
       </div>
     </div>
-  </div>;
+  );
 }

@@ -1,5 +1,5 @@
 "use client";
-import { Venue } from "@/types/typings";
+import { Booking, Venue } from "@/types/typings";
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -17,6 +17,7 @@ export default function CreateBooking({ allVenues }: Props) {
   const [filteredVenues, setFilteredVenues] = useState(() => allVenues);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [venueId, setVenueId] = useState("");
+
   function openBookingForm() {
     setBookingForm((current) => !current);
   }

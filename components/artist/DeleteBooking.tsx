@@ -1,6 +1,8 @@
 "use client";
 
+import { Booking } from "@/types/typings";
 import { toast } from "react-hot-toast";
+import { KeyedMutator } from "swr";
 
 type Props = {
   id: string;
@@ -9,6 +11,7 @@ type Props = {
 export default function DeleteBooking({ id }: Props) {
   async function deleteItem() {
     try {
+      toast.loading("Deleting your booking...");
       const body = { id };
       const response = await fetch(`bookings/createBooking`, {
         method: "DELETE",
@@ -20,6 +23,7 @@ export default function DeleteBooking({ id }: Props) {
       }
       const result = await response.json();
       if (response.status === 200) {
+        toast.dismiss();
         toast.success(result.message);
       }
     } catch (error) {
