@@ -1,14 +1,13 @@
 "use client";
 
-import { Booking } from "@/types/typings";
 import { toast } from "react-hot-toast";
-import { KeyedMutator } from "swr";
 
 type Props = {
   id: string;
+  mutate: any;
 };
 
-export default function DeleteBooking({ id }: Props) {
+export default function DeleteBooking({ id, mutate }: Props) {
   async function deleteItem() {
     try {
       toast.loading("Deleting your booking...");
@@ -25,6 +24,7 @@ export default function DeleteBooking({ id }: Props) {
       if (response.status === 200) {
         toast.dismiss();
         toast.success(result.message);
+        mutate();
       }
     } catch (error) {
       console.log(error);

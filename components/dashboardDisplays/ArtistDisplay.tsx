@@ -6,21 +6,28 @@ import Link from "next/link";
 import React from "react";
 import CreateBooking from "../artist/CreateBooking";
 import DeleteBooking from "../artist/DeleteBooking";
+import useSWR, { mutate } from "swr";
 
 type Props = {
   allVenues: Venue[];
   bookings: Booking[];
 };
 
-async function getData() {
-  const data = await fetch("/bookings/mybookings");
-  const response = await data.json();
-  return response;
+// async function getData() {
+//   const data = await fetch("/bookings/mybookings");
+//   const response = await data.json();
+//   return response;
+// }
+async function fetcher(url: string) {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
 }
 
-export default function ArtistDisplay({ allVenues, bookings }: Props) {
-  const user = getData();
-  console.log(user);
+export default function ArtistDisplay({ allVenues }: Props) {
+  // const user = getData();
+  // console.log(user);
+  const { data, mutate, error } = useSWR("/bookings/mybookings", fetcher);
 
   const allVenuesWithDatesAsString = allVenues.map((venue: Venue) => {
     return {
@@ -51,30 +58,37 @@ export default function ArtistDisplay({ allVenues, bookings }: Props) {
             </tr>
           </thead>
           <tbody>
-            {bookings &&
-              bookings.map((booking: Booking) => (
-                <tr key={booking.id} className="text-center">
-                  <td className="border md:px-4 py-2">{booking.venueTitle}</td>
-                  <td className="border md:px-4 py-2">
-                    {formatDate(booking.date)}
-                  </td>
-                  <td className="border md:px-4 py-2">
-                    {formatTime(booking.start)}
-                  </td>
-                  <td className="border md:px-4 py-2">
-                    {formatTime(booking.end)}
-                  </td>
-                  <td className="border md:px-4 py-2">
-                    <DeleteBooking id={booking.id} />
-                  </td>
-                </tr>
-              ))}
+            {data
+              ? data?.bookings?.map((booking: Booking) => (
+                  <tr key={booking.id} className="text-center">
+                    <td className="border md:px-4 py-2">
+                      {booking.venueTitle}
+                    </td>
+                    <td className="border md:px-4 py-2">
+                      {formatDate(booking.date)}
+                    </td>
+                    <td className="border md:px-4 py-2">
+                      {formatTime(booking.start)}
+                    </td>
+                    <td className="border md:px-4 py-2">
+                      {formatTime(booking.end)}
+                    </td>
+                    <td className="border md:px-4 py-2">
+                      <DeleteBooking mutate={mutate} id={booking.id} />
+                    </td>
+                  </tr>
+                ))
+              : null}
           </tbody>
         </table>
       </div>
       <div className="mt-3">
         <div className="">
-          <CreateBooking allVenues={allVenuesWithDatesAsString} />
+          <CreateBooking
+            mutate={mutate}
+            data={data}
+            allVenues={allVenuesWithDatesAsString}
+          />
         </div>
       </div>
     </div>

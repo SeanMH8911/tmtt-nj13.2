@@ -6,9 +6,11 @@ import toast, { Toaster } from "react-hot-toast";
 type ChangeEvent = React.ChangeEvent<HTMLInputElement>;
 type Props = {
   allVenues: Venue[];
+  mutate: any;
+  data: Booking[];
 };
 
-export default function CreateBooking({ allVenues }: Props) {
+export default function CreateBooking({ allVenues, mutate }: Props) {
   const [bookingForm, setBookingForm] = useState(false);
   const [date, setDate] = useState("");
   const [timeFrom, setTimeFrom] = useState("");
@@ -70,12 +72,22 @@ export default function CreateBooking({ allVenues }: Props) {
       } else {
         toast.dismiss();
         toast.success("booking successfully created!");
+        const newBooking = {
+          id: "newBookingId",
+          venueId,
+          date,
+          timeFrom,
+          timeTill,
+        };
+        console.log("new booking is ", newBooking);
+
         setSearchTerm("");
         setDate("");
         setTimeFrom("");
         setTimeTill("");
         setVenueId("");
         setBookingForm(false);
+        mutate();
       }
     } catch (error) {
       console.error(error);
