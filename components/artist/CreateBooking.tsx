@@ -95,6 +95,8 @@ export default function CreateBooking({ allVenues, mutate }: Props) {
     }
   }
 
+  const today = new Date().toISOString().slice(0, 10);
+
   return (
     <div>
       <Toaster />
@@ -142,6 +144,7 @@ export default function CreateBooking({ allVenues, mutate }: Props) {
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
                 required={true}
+                min={today}
               />
             </div>
             <div>

@@ -3,10 +3,10 @@ import { formatDate, formatTime } from "@/lib/formatters";
 import { Venue } from "@/types/typings";
 import { Booking } from "@prisma/client";
 import Link from "next/link";
-import React from "react";
 import CreateBooking from "../artist/CreateBooking";
 import DeleteBooking from "../artist/DeleteBooking";
 import useSWR, { mutate } from "swr";
+import CustomLoader from "../CustomLoader";
 
 type Props = {
   allVenues: Venue[];
@@ -23,11 +23,11 @@ async function fetcher(url: string) {
   const data = await response.json();
   return data;
 }
-
 export default function ArtistDisplay({ allVenues }: Props) {
   // const user = getData();
   // console.log(user);
   const { data, mutate, error } = useSWR("/bookings/mybookings", fetcher);
+  if (error) return <div>Failed to load bookings</div>;
 
   const allVenuesWithDatesAsString = allVenues.map((venue: Venue) => {
     return {
@@ -47,19 +47,25 @@ export default function ArtistDisplay({ allVenues }: Props) {
         </button>
       </Link>
       <h1 className="mb-3 text-2xl">My Bookings</h1>
-      <div className="w-full ">
-        <table className="w-full table-auto">
-          <thead>
-            <tr className="text-center">
-              <th className="border md:px-4 py-2">Venue Title</th>
-              <th className="border md:px-4 py-2">Date</th>
-              <th className="border md:px-4 py-2">Start Time</th>
-              <th className="border md:px-4 py-2">End Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data
-              ? data?.bookings?.map((booking: Booking) => (
+
+      {!data ? (
+        <div className="">
+          <CustomLoader />
+        </div>
+      ) : (
+        <>
+          <div className="w-full ">
+            <table className="w-full table-auto">
+              <thead>
+                <tr className="text-center">
+                  <th className="border md:px-4 py-2">Venue Title</th>
+                  <th className="border md:px-4 py-2">Date</th>
+                  <th className="border md:px-4 py-2">Start Time</th>
+                  <th className="border md:px-4 py-2">End Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data?.bookings?.map((booking: Booking) => (
                   <tr key={booking.id} className="text-center">
                     <td className="border md:px-4 py-2">
                       {booking.venueTitle}
@@ -77,20 +83,21 @@ export default function ArtistDisplay({ allVenues }: Props) {
                       <DeleteBooking mutate={mutate} id={booking.id} />
                     </td>
                   </tr>
-                ))
-              : null}
-          </tbody>
-        </table>
-      </div>
-      <div className="mt-3">
-        <div className="">
-          <CreateBooking
-            mutate={mutate}
-            data={data}
-            allVenues={allVenuesWithDatesAsString}
-          />
-        </div>
-      </div>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-3">
+            <div className="">
+              <CreateBooking
+                mutate={mutate}
+                data={data}
+                allVenues={allVenuesWithDatesAsString}
+              />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }
