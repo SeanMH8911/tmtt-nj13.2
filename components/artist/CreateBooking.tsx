@@ -72,15 +72,6 @@ export default function CreateBooking({ allVenues, mutate }: Props) {
       } else {
         toast.dismiss();
         toast.success("booking successfully created!");
-        const newBooking = {
-          id: "newBookingId",
-          venueId,
-          date,
-          timeFrom,
-          timeTill,
-        };
-        console.log("new booking is ", newBooking);
-
         setSearchTerm("");
         setDate("");
         setTimeFrom("");
@@ -171,7 +162,7 @@ export default function CreateBooking({ allVenues, mutate }: Props) {
               <button
                 type="submit"
                 value="create"
-                className="text-white font-medium text-lg bg-myBlue rounded-lg px-4 m-0 h-[40px] hover:bg-myCharcoal"
+                className=" w-full md:w-auto my-2 text-white font-medium text-lg bg-myBlue rounded-lg px-4 md:m-0 h-[40px] hover:bg-myCharcoal"
               >
                 Create
               </button>

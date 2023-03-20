@@ -1,5 +1,7 @@
+import { formatDate, formatTime } from "@/lib/formatters";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import prisma from "@/prisma/client";
+import { Booking } from "@/types/typings";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
@@ -17,9 +19,12 @@ export async function GET(request: Request) {
       where: {
         artistId: prismaUser.id,
       },
+      orderBy: [
+        {
+          date: "asc",
+        },
+      ],
     });
-    console.log(bookings);
-
     return NextResponse.json({ bookings, status: 200 });
   } catch (error) {}
 }

@@ -6,7 +6,7 @@ async function Profile() {
   return (
     <div className="flex justify-center">
       <section className="px-2 max-w-2xl mx-auto">
-        <UserListingProfile user={user} />
+        <UserListingProfile user={JSON.parse(JSON.stringify(user))} />
       </section>
     </div>
   );

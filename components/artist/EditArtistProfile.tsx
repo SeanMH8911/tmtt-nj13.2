@@ -60,7 +60,6 @@ function EditArtistProfile({ user }: Props) {
         <form className="flex flex-col  " onSubmit={updateProfile}>
           <div className="space-y-2">
             <input
-              autoFocus
               onChange={(e) =>
                 setUpdateArtist({
                   ...updateArtist,
@@ -112,7 +111,6 @@ function EditArtistProfile({ user }: Props) {
                     streetName: e.target.value,
                   })
                 }
-                autoFocus
                 placeholder="First line of address"
                 type="text"
                 className="input-container-edit  mt-2 md:w-2/3"
@@ -126,7 +124,6 @@ function EditArtistProfile({ user }: Props) {
                     locality: e.target.value,
                   })
                 }
-                autoFocus
                 placeholder="Locality (e.g Adeje)"
                 type="text"
                 className="input-container-edit  mt-2 md:w-1/3"
@@ -142,7 +139,6 @@ function EditArtistProfile({ user }: Props) {
                     area: e.target.value,
                   })
                 }
-                autoFocus
                 placeholder="Province"
                 type="text"
                 className="input-container-edit  mt-2"
@@ -156,7 +152,6 @@ function EditArtistProfile({ user }: Props) {
                     postalCode: e.target.value,
                   })
                 }
-                autoFocus
                 placeholder="Post Code"
                 type="text"
                 className="input-container-edit  mt-2"
@@ -170,7 +165,6 @@ function EditArtistProfile({ user }: Props) {
                     country: e.target.value,
                   })
                 }
-                autoFocus
                 placeholder="Country"
                 type="text"
                 className="input-container-edit  mt-2 "
@@ -185,7 +179,6 @@ function EditArtistProfile({ user }: Props) {
                   contactNumber: e.target.value,
                 })
               }
-              autoFocus
               placeholder="Contact Number"
               type="number"
               className="input-container-edit  "
@@ -200,7 +193,6 @@ function EditArtistProfile({ user }: Props) {
                     facebookLink: e.target.value,
                   })
                 }
-                autoFocus
                 placeholder="Facebook Link"
                 type="text"
                 className="input-container-edit  "
@@ -213,7 +205,6 @@ function EditArtistProfile({ user }: Props) {
                     instagramLink: e.target.value,
                   })
                 }
-                autoFocus
                 placeholder="Instagram Link"
                 type="text"
                 className="input-container-edit  "
@@ -228,7 +219,6 @@ function EditArtistProfile({ user }: Props) {
                     youtubeLink: e.target.value,
                   })
                 }
-                autoFocus
                 placeholder="Youtube Link"
                 type="text"
                 className="input-container-edit  "
@@ -241,7 +231,6 @@ function EditArtistProfile({ user }: Props) {
                     websiteLink: e.target.value,
                   })
                 }
-                autoFocus
                 placeholder="Website Link"
                 type="text"
                 className="input-container-edit   "
@@ -251,7 +240,6 @@ function EditArtistProfile({ user }: Props) {
             <div>
               <label className="">Available for hire?</label>
               <select
-                autoFocus
                 onChange={(e) =>
                   setUpdateArtist({
                     ...updateArtist,
@@ -274,7 +262,6 @@ function EditArtistProfile({ user }: Props) {
                   contactEmail: e.target.value,
                 })
               }
-              autoFocus
               placeholder="Contact Email"
               type="email"
               className="input-container-edit "

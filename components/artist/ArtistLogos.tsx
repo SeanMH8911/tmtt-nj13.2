@@ -29,25 +29,25 @@ export default function ArtistLogos({
           target={"blank"}
           href={`https://www.facebook.com${formatLink(facebook)}`}
         >
-          <FaFacebookSquare fill="#3b5998" size={24} />
+          <FaFacebookSquare fill="#3b5998" size={30} />
         </a>
       )}
 
       {instagram && (
         <a href={`https://www.instagram.com${formatLink(instagram)}`}>
-          <FaInstagram fill="#fa7e1e" size={24} />
+          <FaInstagram fill="#fa7e1e" size={30} />
         </a>
       )}
 
       {youtube && (
         <a href={`https://www.youtube.com${formatLink(youtube)}`}>
-          <FaYoutube fill="#FF0000" size={24} />
+          <FaYoutube fill="#FF0000" size={30} />
         </a>
       )}
 
       {website && (
         <a href={`https://www.${formatWebsiteLink(website)}`}>
-          <TbWorldWww size={24} />
+          <TbWorldWww size={30} />
         </a>
       )}
     </>

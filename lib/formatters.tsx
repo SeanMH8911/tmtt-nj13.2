@@ -24,8 +24,8 @@ export function formatTime(time: string | number | Date | dayjs.Dayjs) {
     hour: "numeric",
     minute: "numeric",
   });
-  const formatTime = timeString.split(" ");
-  return formatTime;
+  const formattedTime = timeString.split(" ");
+  return formattedTime.join("");
 }
 export function formatTimeInput(
   time: string | number | Date | dayjs.Dayjs | null

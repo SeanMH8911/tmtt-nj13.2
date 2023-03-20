@@ -1,7 +1,8 @@
 import ArtistLogos from "@/components/artist/ArtistLogos";
+import UpcomingBookings from "@/components/artist/UpcomingBookings";
 import getAllArtist from "@/lib/getAllArtists";
 import getArtistDetail from "@/lib/getArtistDetail";
-import { Artist } from "@/types/typings";
+import { Artist, Booking } from "@/types/typings";
 import React from "react";
 
 type Props = {
@@ -10,28 +11,21 @@ type Props = {
   };
 };
 
-function availableForHire(x: boolean | String) {
-  if (x) return "Yes";
-  if (!x) return "No";
-}
-
 export default async function page({ params }: Props) {
   const slug = params.id;
   const artist: Artist = await getArtistDetail({ slug });
-  console.log(artist);
-
   return (
     <article className="md:max-w-5xl md:mx-auto">
       {artist && (
-        <div className="flex flex-col md:flex-row">
-          <div className="flex flex-col justify-center items-center">
-            <h2 className="font-bold text-2xl mb-2">{artist.stageName}</h2>
+        <div className="flex flex-col justify-center items-center md:items-start md:flex-row">
+          <div className="flex flex-col justify-center items-center ">
+            <h2 className="font-bold text-3xl mb-2">{artist.stageName}</h2>
             <img
               src={artist.profileImg}
               alt={artist.stageName}
-              className="rounded-full h-[200px] w-[200px] md:h-[300px] md:w-[300px] object-cover"
+              className="rounded-full h-[240px] w-[240px] md:h-[300px] md:w-[300px] object-cover"
             />
-            <div className="flex space-x-2">
+            <div className="flex space-x-2 md:m-5 m-2">
               <ArtistLogos
                 facebook={artist.facebookLink}
                 instagram={artist.instagramLink}
@@ -40,8 +34,13 @@ export default async function page({ params }: Props) {
               />
             </div>
           </div>
-          <div className=" ">
-            <h3>Upcoming Events</h3>
+          <div className="p-5">
+            <h3 className="font-semibold mb-2">Upcoming Events</h3>
+            {artist.bookings.map((booking: Booking) => (
+              <div key={booking.id}>
+                <UpcomingBookings booking={booking} />
+              </div>
+            ))}
           </div>
         </div>
       )}

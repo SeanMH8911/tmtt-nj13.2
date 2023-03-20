@@ -25,6 +25,11 @@ async function getData({ params }: Props) {
         include: {
           artist: true,
         },
+        orderBy: [
+          {
+            date: "asc",
+          },
+        ],
       },
     },
   });
@@ -75,14 +80,18 @@ export default async function VenueDetail({ params }: Props) {
                         return bookingDate > now;
                       })
                       .map((booking: Booking) => (
-                        <div className="flex" key={booking.id}>
-                          <p className="bg-myBlue p-2 ">
-                            {booking.artist.stageName},{" "}
-                            {formatDate(booking.date)} from{" "}
-                            {formatTime(booking.start)} until{" "}
-                            {formatTime(booking.end)}
-                          </p>
-                        </div>
+                        <Link href={`/artist/${booking.artistId}`}>
+                          <div className="flex" key={booking.id}>
+                            <p className="bg-myBlue p-2 ">
+                              <span className="font-semibold">
+                                {booking.artist.stageName}
+                              </span>
+                              , {formatDate(booking.date)} from{" "}
+                              {formatTime(booking.start)} until{" "}
+                              {formatTime(booking.end)}
+                            </p>
+                          </div>
+                        </Link>
                       ))}
                   </div>
                 ) : (
@@ -91,7 +100,7 @@ export default async function VenueDetail({ params }: Props) {
               </div>
             </div>
             <div>
-              <div className="bg-myBlue rounded-lg p-2 my-2 text-myCharcoal font-bold  max-w-[400px]">
+              <div className=" rounded-lg p-2 my-2 font-semibold  max-w-[400px]">
                 <h3 className="py-1 text-2xl">Opening Times</h3>
                 <hr />
                 <ul className="space-y-1">

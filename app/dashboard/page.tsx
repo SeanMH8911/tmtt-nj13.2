@@ -34,6 +34,6 @@ export default async function dashboard() {
 
   // Artist Dashboard
   if (user.role === "Artist") {
-    return <ArtistDisplay allVenues={allVenues} bookings={bookings} />;
+    return <ArtistDisplay allVenues={JSON.parse(JSON.stringify(allVenues))} />;
   }
 }

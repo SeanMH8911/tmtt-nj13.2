@@ -109,10 +109,6 @@ const Venue = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(openHours);
-  }, [openHours]);
-
   return (
     <div className="px-2 flex flex-col my-2">
       <Toaster />

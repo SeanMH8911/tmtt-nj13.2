@@ -10,7 +10,6 @@ import CustomLoader from "../CustomLoader";
 
 type Props = {
   allVenues: Venue[];
-  bookings: Booking[];
 };
 
 // async function getData() {
@@ -29,13 +28,6 @@ export default function ArtistDisplay({ allVenues }: Props) {
   const { data, mutate, error } = useSWR("/bookings/mybookings", fetcher);
   if (error) return <div>Failed to load bookings</div>;
 
-  const allVenuesWithDatesAsString = allVenues.map((venue: Venue) => {
-    return {
-      ...venue,
-      createdAt: venue.createdAt.toString(),
-      updatedAt: venue.updatedAt.toString(),
-    };
-  });
   return (
     <div className="p-2 max-w-5xl mx-auto mt-5">
       <Link href={"/dashboard/profile/editMyProfile"}>
@@ -92,7 +84,7 @@ export default function ArtistDisplay({ allVenues }: Props) {
               <CreateBooking
                 mutate={mutate}
                 data={data}
-                allVenues={allVenuesWithDatesAsString}
+                allVenues={JSON.parse(JSON.stringify(allVenues))}
               />
             </div>
           </div>

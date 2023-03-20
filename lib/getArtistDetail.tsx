@@ -11,7 +11,13 @@ export default async function getArtistDetail({ slug }: Props) {
         id: slug,
       },
       include: {
-        bookings: true,
+        bookings: {
+          orderBy: [
+            {
+              date: "asc",
+            },
+          ],
+        },
       },
     },
     { next: { revalidate: 60 } }
